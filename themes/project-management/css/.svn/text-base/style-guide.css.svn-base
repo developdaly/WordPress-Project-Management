@@ -1,0 +1,23 @@
+body {
+	margin-bottom: 150px;
+}
+.row {
+	width: 1440px;
+}
+
+.row.display {
+	background: #f4f4f4;
+}
+
+.row.display .column, .row.display .columns, .block-grid li {
+	background: #e7e7e7;
+	border: 1px solid #ddd;
+	font-size: 11px;
+	text-indent: 3px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+#sidebar .tabs a {
+	text-decoration: none;
+}

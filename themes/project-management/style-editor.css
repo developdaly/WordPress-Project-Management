@@ -1,0 +1,55 @@
+@import url('css/foundation.css');
+@import url('style.css');
+
+html .mceContentBody {
+	padding: 20px;
+	width: 1440px;
+	max-width: 100%;
+	min-width: 768px;
+	margin: 0 auto;
+}
+
+
+.mceContentBody .one { width: 8.333%; }
+
+.mceContentBody .two { width: 16.667%; }
+
+.mceContentBody .three { width: 25%; }
+
+.mceContentBody .four { width: 33.333%; }
+
+.mceContentBody .five { width: 41.667%; }
+
+.mceContentBody .six { width: 50%; }
+
+.mceContentBody .seven { width: 58.333%; }
+
+.mceContentBody .eight { width: 66.667%; }
+
+.mceContentBody .nine { width: 75%; }
+
+.mceContentBody .ten { width: 83.333%; }
+
+.mceContentBody .eleven { width: 91.667%; }
+
+.mceContentBody .twelve { width: 100%; }
+
+.mceContentBody .offset-by-one { margin-left: 8.333%; }
+
+.mceContentBody .offset-by-two { margin-left: 16.667%; }
+
+.mceContentBody .offset-by-three { margin-left: 25%; }
+
+.mceContentBody .offset-by-four { margin-left: 33.333%; }
+
+.mceContentBody .offset-by-five { margin-left: 41.667%; }
+
+.mceContentBody .offset-by-six { margin-left: 50%; }
+
+.mceContentBody .offset-by-seven { margin-left: 58.333%; }
+
+.mceContentBody .offset-by-eight { margin-left: 66.667%; }
+
+.mceContentBody .offset-by-nine { margin-left: 75%; }
+
+.mceContentBody .offset-by-ten { margin-left: 83.333%; }

@@ -1,0 +1,160 @@
+a {
+	color: #222;
+	text-decoration: underline;
+}
+a:hover {
+	color: #ff0000;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: "myriad-pro", sans-serif;
+}
+
+h1 {
+	border-bottom: solid 1px #E1E1E1;
+	color: #ff0000;
+	font: 700 2em/1.625 "myriad-pro";
+	margin: 20px 0;
+	text-transform: uppercase;
+}
+h2 {
+	font: 700 2em/1.625 "myriad-pro";
+}
+h3 {
+	font: 400 2em/1.625 "myriad-pro";
+}
+h4 {
+	font: 700 1.5em/1.625 "myriad-pro";
+}
+h5 {
+	font: 400 1.5em/1.625 "myriad-pro";
+}
+h6 {
+	font: 700 1em/1.625 "myriad-pro";
+}
+pre {
+	background: #eee;
+	width: 92%;
+	overflow: auto;
+	margin: 18px 0;
+	padding: 10px 8px 10px 12px;
+	color: #3F3B36;
+	border: 1px solid #E9E7E0;
+	border-left: 6px solid #999;
+	font: lighter 12px/20px Consolas,Menlo,"Liberation Mono",Courier,monospace;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+pre code {
+	color: #3F3B36;
+	background-color: transparent;
+	font-size: 12px;
+	line-height: 20px;
+}
+code {
+	font: 0.857em Consolas,Menlo,"Liberation Mono",Courier,monospace;
+}
+.button {
+	background: #666;
+	border: 1px solid #444;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-ms-box-shadow: none;
+	-o-box-shadow: none;
+	box-shadow: none;
+}
+.button:hover {
+	color: white;
+	background-color: #555;
+}
+.button:focus {
+	-webkit-box-shadow: 0 0 4px #5F6062, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	-moz-box-shadow: 0 0 4px #5F6062, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	box-shadow: 0 0 4px #5F6062, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	color: white;
+}
+.button.radius {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px; 
+	border-radius: 5px;
+}
+.button.primary {
+	background-color: #5F6062;
+	border: 1px solid #1e728c;
+}
+.button.primary:hover {
+	background-color: #2284a1;
+}
+.button.primary:focus {
+	-webkit-box-shadow: 0 0 4px #5F6062, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	-moz-box-shadow: 0 0 4px #5F6062, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	box-shadow: 0 0 4px #5F6062, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+}
+.button.success {
+	background-color: #5da423;
+	border: 1px solid #396516;
+}
+.button.success:hover {
+	background-color: #457a1a;
+}
+.button.success:focus {
+	-webkit-box-shadow: 0 0 5px #5da423, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	-moz-box-shadow: 0 0 5px #5da423, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	box-shadow: 0 0 5px #5da423, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+}
+.button.alert {
+	background-color: #FF0000;
+	border: 1px solid #7f0a0c;
+}
+.button.alert:hover {
+	background-color: #970b0e;
+}
+.button.alert:focus {
+	-webkit-box-shadow: 0 0 4px #FF0000, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	-moz-box-shadow: 0 0 4px #FF0000, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	box-shadow: 0 0 4px #FF0000, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+}
+.button.secondary {
+	background-color: #e9e9e9;
+	color: #1d1d1d;
+	border: 1px solid #c3c3c3;
+}
+.button.secondary:hover {
+	background-color: #d0d0d0;
+}
+.button.secondary:focus {
+	-webkit-box-shadow: 0 0 5px #e9e9e9, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	-moz-box-shadow: 0 0 5px #e9e9e9, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	box-shadow: 0 0 5px #e9e9e9, 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+}
+.button.dropdown.split.alert > span {
+	background: #ff0000;
+}
+
+ul, ol {
+	margin: 0 0 2em 2em;
+}
+ul ul, ol ol {
+	margin-bottom: 0;
+}
+.nav-bar {
+	background: #4c4c4c; /* Old browsers */
+	background: -moz-linear-gradient(top,  #4c4c4c 0%, #252222 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4c4c4c), color-stop(100%,#252222)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #4c4c4c 0%,#252222 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #4c4c4c 0%,#252222 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #4c4c4c 0%,#252222 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #4c4c4c 0%,#252222 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#252222',GradientType=0 ); /* IE6-9 */
+	font-weight: bold;
+	margin: 0 0 2em;
+}
+.nav-bar > li.active, .nav-bar > li.active:hover {
+	background: #4c4c4c;
+	border-color: #000;
+}
+.nav-bar > li.has-flyout > a:first-child:after {
+	border-color: #ff0000 transparent transparent transparent;
+}
+

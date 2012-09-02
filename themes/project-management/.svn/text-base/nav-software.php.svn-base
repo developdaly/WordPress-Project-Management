@@ -1,0 +1,14 @@
+		<?php if ( is_post_type_archive( 'software' ) || 'software' == get_post_type() ): ?>
+			<h3>Software</h3>
+			<dl class="tabs vertical">
+				<?php
+					$pages = wp_list_pages( array( 'echo' => false, 'post_type' => 'software', 'title_li' => '' ));
+				 	$pages = str_replace( '<li', '<dd', $pages);
+					$pages = str_replace('</li', '</dd', $pages);
+					echo $pages;
+				  ?>
+			</dl>
+			
+			<?php wp_reset_query(); ?>
+			
+		<?php endif; ?>

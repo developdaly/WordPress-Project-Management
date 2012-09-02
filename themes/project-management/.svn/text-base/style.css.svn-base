@@ -1,0 +1,443 @@
+/**
+ * Theme Name: Marketing
+ * Description: A custom theme for Santander Consumer USA
+ * Version: 1.0
+ * Author: Patrick Daly
+ *
+ * (c) 2012 Santander Consumer USA Inc. All Rights Reserved
+ * http://santanderconsumerusa.com
+ */
+
+#container {
+	margin-top: 60px;
+}
+@media (min-width: 1200px) {
+	.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+		width: 1440px;
+	}
+}
+
+/*
+ * Primary Menu
+ ***********************************************************/
+body.logged-in #menu-primary .navbar-fixed-top {
+	top: 28px;
+}
+
+/*
+ * Header
+ ***********************************************************/
+#header {
+	border-bottom: 1px solid #eee;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+}
+#logo {
+	border-right: 1px solid #eee;
+	float: left;
+	margin-right: 20px;
+	padding-right: 10px;
+}
+#site-title {
+	color: #222;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 42px;
+    margin: 20px 0 0;
+}
+#site-title a {
+	color: #222;
+}
+#site-description {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 24px;
+    margin: 0;
+}
+
+/*
+ * Dropdown Menus
+ ***********************************************************/
+.dropdown-menu .sub-menu,
+.dropdown-menu .sub-sub-menu {
+    position: absolute;
+    top: -20%;
+    left: 99%;
+    visibility: hidden;
+    margin-top:0;
+}
+.dropdown-menu .icon-arrow-right {
+position:relative;
+top:2px;
+left:3px;
+}
+.dropdown-menu li:hover .sub-menu,
+.dropdown-menu .sub-menu li:hover .sub-sub-menu {
+    visibility: visible;
+    display: block;
+}
+
+.navbar .sub-menu:before,
+.navbar .sub-sub-menu:before {
+    border-bottom: 9px solid transparent;
+    border-left: none;
+    border-right: 9px solid rgba(0, 0, 0, 0.2);
+    border-top: 9px solid transparent;
+    left: -9px;
+    top: 30%;
+}
+.navbar .sub-menu:after,
+.navbar .sub-sub-menu:after {
+    border-top: 8px solid transparent;
+    border-left: none;
+    border-right: 8px solid #fff;
+    border-bottom: 8px solid transparent;
+    left: 10px;
+    top: 31%;
+    left: -8px;
+}
+
+/*
+ * Tasks
+ ***********************************************************/
+.pm_task {
+	background: #eee;
+}
+
+.task-header {
+	border-bottom: 1px solid #ccc;
+	-moz-border-radius: 4px 4px 0 0;
+	-webkit-border-radius: 4px 4px 0 0;
+	border-radius: 4px 4px 0 0;
+	padding: 20px;
+}
+.task-header h1 {
+	color: #fff;
+	font: 26px/42px "Myriad-Pro", Arial, Helvetica, Sans-serif;
+	margin: 0;
+}
+.task-header .user-story {
+	background: #000;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	color: #fff;
+	float: left;
+	font-size: 20px;
+	line-height: 42px;
+	margin-right: 10px;
+	opacity: 0.6;
+	padding: 0 15px;
+	text-decoration: none;
+}
+.task-header .user-story:hover {
+	background: #fff;
+	color: #000;
+}
+.task-header .task-status {
+	float: right;
+	font-size: 26px;
+	line-height: 42px;
+	opacity: 0.6;
+}
+.task-header .task-status a {
+	color: #fff;
+}
+
+.pm_task.a-new .task-header,
+.archive .pm_task.a-new .task-status {
+	background: #5EB95E;
+}
+.pm_task.b-in-progress .task-header,
+.archive .pm_task.b-in-progress .task-status {
+	background: #149BDF;
+}
+.pm_task.c-needs-review .task-header,
+.archive .pm_task.c-needs-review .task-status {
+	background: #FAA732;
+}
+.pm_task.d-needs-revision .task-header,
+.archive .pm_task.d-needs-revision .task-status {
+	background: #DD514C;
+}
+.pm_task.e-completed .task-header,
+.archive .pm_task.e-completed .task-status {
+	background: #069;
+}
+.pm_task.f-closed .task-header,
+.archive .pm_task.f-closed .task-status {
+	background: #ccc;
+	color: #333;}
+.archive .pm_task .task-status {
+	padding: 3px 6px;
+}
+.archive .pm_task .task-status a {
+	color: #fff;
+}
+
+.table .d-critical {
+	background: #f00;
+	color: #fff;
+}
+.table .d-critical a {
+	color: #fff;
+}
+
+.taxonomy-drilldown-dropdowns {
+	float: left;
+	overflow: hidden;
+}
+.taxonomy-drilldown-dropdowns ul {
+	float: left;
+	list-style: none;
+	margin: 0;
+}
+.taxonomy-drilldown-dropdowns li {
+	display: inline-block;
+	margin: 0 10px 0 0;
+}
+.taxonomy-drilldown-dropdowns label {
+	display: inline;
+	vertical-align: top;
+}
+.taxonomy-drilldown-dropdowns select {
+	margin: 0;
+}
+.taxonomy-drilldown-dropdowns input[type="submit"] {
+	float: left;
+	margin: 0 10px;
+	vertical-align: top;
+}
+
+.table a {
+	color: #222;
+}
+.table .entry-title {
+	margin: 0;
+}
+
+.pagination .current, .pagination .current:hover {
+	color: #999;
+	cursor: default;
+	background-color: whiteSmoke;
+}
+
+#task-main {
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+
+.pm_task .entry-content {
+	background: #fff url('images/bg-grid.png');
+	border-bottom: 1px solid #f1f1f1;
+	color: #222;
+	font: 16px/1.625 "Myriad-Pro", Arial, Helvetica, Sans-serif;
+	padding: 40px 40px 20px;
+}
+
+	
+.comment-list {
+	margin: 0;
+}
+.comment {
+	background: #fff;
+	border-bottom: 1px dotted #ccc;
+	list-style: none;
+	margin: 0;
+	padding: 20px 0 0 20px;
+}
+.comment .comment {
+	border-bottom: none;
+	border-left: 1px dotted #ccc;
+	border-top: 1px dotted #ccc;
+	padding-right: 0;
+}
+.comment-wrap {
+	padding: 0 20px 20px 0 ;
+}
+.comment.a-new {
+	border-left: 4px solid #5EB95E;
+}
+.comment.b-in-progress {
+	border-left: 4px solid #149BDF;
+}
+.comment.c-needs-review {
+	border-left: 4px solid #FAA732;
+}
+.comment.d-needs-revision {
+	border-left: 4px solid #DD514C;
+}
+.comment.e-completed {
+	border-left: 4px solid #006699;
+}
+.comment.f-closed {
+	border-left: 4px solid #ccc;
+}
+
+.comment-meta {
+	margin-bottom: 20px;
+	overflow: hidden;
+	text-align: right;
+}	
+.comment .comment-meta {
+	color: #999;
+	font-size: 11px;
+	overflow: hidden;
+	text-align: right;
+}
+.comment .comment-meta a {
+	color: #999;
+}
+.comment .comment-meta .comment-author {
+	color: #222;
+	font-size: 16px;
+	font-weight: 600;
+	float: left;
+}
+
+#respond {
+	background: #ccc;
+	padding: 20px;
+}
+#respond .log-in-out {
+	color: #666;
+	font-size: 10px;
+	text-align: right;
+}
+#respond .log-in-out a {
+	color: #666;
+}
+#respond .form-horizontal .control-label {
+	width: 100px;
+}
+#respond .form-horizontal .controls {
+	margin-left: 120px;
+}
+#respond #task-status-steps .radio:last-child .icon-arrow-right {
+	display: none; 
+}
+#respond label {
+	font-size: 12px;
+}
+	#respond .a-new {
+		border-bottom: 3px solid #5EB95E;
+	}
+	#respond .b-in-progress {
+		border-bottom: 3px solid #149BDF;
+	}
+	#respond .c-needs-review {
+		border-bottom: 3px solid #FAA732;
+	}
+	#respond .d-needs-revision {
+		border-bottom: 3px solid #DD514C;
+	}
+	#respond .e-completed {
+		border-bottom: 3px solid #006699;
+	}
+	#respond .f-closed {
+		color: #000;
+	}
+#respond textarea {
+	width: 100%;
+}
+#respond #comment_ifr {
+	background: #fff;
+}
+
+#sidebar-task {
+	font-size: 12px;
+}
+#sidebar-task .task-meta {
+	list-style: none;
+	margin: 0 0 20px;
+}
+#sidebar-task .task-meta li {
+	border-bottom: 1px dotted #ccc;
+	padding: 20px;
+}
+#sidebar-task .task-meta li li {
+	border-bottom: none;
+	padding: 0;
+}
+#sidebar-task abbr {
+	border-bottom: 1px dotted #ccc;
+}
+
+#sidebar-task strong {
+	font: normal bold 18px/1.625 'Myriad-Pro',Arial,Helvetica,Sans-serif;
+}
+
+.taxonomy-drilldown-checkboxes h4 {
+	display: block;
+	margin-bottom: 0;
+	padding: 3px 15px;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 21px;
+	color: #999999;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	text-transform: uppercase;
+}
+.taxonomy-drilldown-checkboxes li+ .h4 {
+	margin-top: 9px;
+}
+
+.taxonomy-drilldown-checkboxes .term-list {
+	list-style: none;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-bottom: 0;
+	margin-left: 0;
+}
+.taxonomy-drilldown-checkboxes h4 {
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.taxonomy-drilldown-checkboxes .term-list > li > a {
+	margin-left: -15px;
+	margin-right: -15px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.taxonomy-drilldown-checkboxes .term-list > li > a {
+	padding: 3px 15px;
+}
+.taxonomy-drilldown-checkboxes > .active > a, .taxonomy-drilldown-checkboxes > .active > a:hover {
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+	background-color: #ff0000;
+}
+.taxonomy-drilldown-checkboxes .term-list [class^="icon-"] {
+	margin-right: 2px;
+}
+.taxonomy-drilldown-checkboxes .term-list .divider {
+	*width: 100%;
+	height: 1px;
+	margin: 9.5px 1px;
+	*margin: -5px 0 5px;
+	overflow: hidden;
+	background-color: #e5e5e5;
+	border-bottom: 1px solid #ffffff;
+}
+.taxonomy-drilldown-checkboxes input[type="checkbox"] {
+	vertical-align: top;
+}
+.taxonomy-drilldown-checkboxes input[type="submit"] {
+	margin: 0 10px 0 20px;
+}
+
+.archive .pm_task {
+	font-size: 13px;
+	line-height: 21px;
+}
+.archive .pm_task .entry-title {
+	font-size: 13px;
+	line-height: 21px;
+}
+img {
+	height: auto;
+}
+
+input[type="submit"]{display:inline-block;*display:inline;*zoom:1;padding:4px 10px 4px;margin-bottom:0;font-size:14px;line-height:21px;*line-height:20px;color:#fff;text-align:center;vertical-align:middle;cursor:pointer;background-color:#666;border:none;*border:0;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;*margin-left:.3em;-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);}input[type="submit"]:hover,input[type="submit"]:active,input[type="submit"].active,input[type="submit"].disabled,input[type="submit"][disabled]{background-color:#e6e6e6;*background-color:#d9d9d9;}
+input[type="submit"]:active,input[type="submit"].active{background-color:#cccccc \9;}
+input[type="submit"]:first-child{*margin-left:0;}
+input[type="submit"]:hover{color:#fff;text-decoration:none;background-color:#999;*background-color:#999;background-position:0 -15px;-webkit-transition:background-position 0.1s linear;-moz-transition:background-position 0.1s linear;-ms-transition:background-position 0.1s linear;-o-transition:background-position 0.1s linear;transition:background-position 0.1s linear;}
+input[type="submit"]:focus{outline:thin dotted #333;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px;}
