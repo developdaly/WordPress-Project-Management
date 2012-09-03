@@ -87,8 +87,12 @@ function pm_tasks( $atts ) {
 }
 
 function pm_templates() {
-    if ( is_post_type_archive( 'pm_task' ) != locate_template( 'archive-pm_task.php' ) ) {
+    if ( is_post_type_archive( 'pm_task' ) &! locate_template( 'archive-pm_task.php' ) ) {
         include ( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/templates/archive-pm_task.php');
+        exit;
+    }
+    if ( ( 'pm_task' == get_post_type() ) &! locate_template( 'pm_task.php' ) ) {
+        include ( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/templates/pm_task.php');
         exit;
     }
 }

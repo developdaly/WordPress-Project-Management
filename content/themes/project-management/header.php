@@ -51,40 +51,9 @@
 
 	<div id="container" class="container-fluid">
 
-		<?php do_atomic( 'before_header' ); // marketing_before_header ?>
-
-		<header id="header">
-
-			<?php do_atomic( 'open_header' ); // marketing_open_header ?>
-
-			<div class="row">
-
-				<div id="branding" class="span9">
-					<?php hybrid_site_title(); ?>
-					<?php hybrid_site_description(); ?>
-				</div><!-- #branding -->
-
-				<?php get_sidebar( 'header' ); // Loads the sidebar-header.php template. ?>
-
-				<?php do_atomic( 'header' ); // marketing_header ?>
-
-			</div><!-- .wrap -->
-
-			<?php do_atomic( 'close_header' ); // marketing_close_header ?>
-
-		</header>
-
-		<?php do_atomic( 'after_header' ); // marketing_after_header ?>
-
 		<?php do_atomic( 'before_main' ); // marketing_before_main ?>
 
-			<?php if ( current_theme_supports( 'breadcrumb-trail' ) ) { ?>
-				
-				<div class="span12">
-				<?php breadcrumb_trail( array( 'before' => __( 'You are here:', hybrid_get_parent_textdomain() ), 'front_page' => false ) ); ?>
-				</div>
-			
-			<?php } ?>
+		<?php if ( current_theme_supports( 'breadcrumb-trail' ) ) breadcrumb_trail( array( 'before' => __( 'You are here:', hybrid_get_parent_textdomain() ), 'front_page' => false ) ); ?>
 			
 		<div id="main">
 			

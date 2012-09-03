@@ -51,7 +51,7 @@ add_action( 'comment_post', 'pm_insert_comment', 10, 1 );
 add_action( 'get_header', 'walled_garden' );
 
 /* Load custom templates. */
-add_action('template_redirect', 'pm_templates');
+add_action( 'template_redirect', 'pm_templates' );
 
 /* Add WYSISYG editor to comment form. */
 add_filter( 'comment_form_field_comment', 'pm_comment_editor' );

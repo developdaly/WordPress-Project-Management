@@ -12,24 +12,42 @@
  * Site specific styles (i.e. stuff you'd only see on this site)
  ***********************************************************/
 body {
-	background: #e0e0e0;
-	font: 11px/1.625 "Open Sans", Arial, Helvetica, sans-serif;
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+body.logged-in {
+	margin-top: 40px;
+}
+.logged-in .navbar-fixed-top {
+	top: 28px;
 }
 .container-fluid {
 	margin: 0;
 	padding: 0;
 }
 
-#header {
-	background: #fff;
+.row-fluid .navbar-inner {
+	padding: 0 20px;
 }
 
-#site-title,
-#site-description {
-	font-size: 11px;
+.navbar .brand h1 {
+	font: inherit;
+	line-height: 20px;
 	margin: 0;
 }
 
-#sidebar-primary {
+.breadcrumbs {
+	background: #fff;
+	color: #ccc;
+	font-size: 11px;
+	padding: 5px 20px;
+}
+
+#content {
+	padding: 20px 0 20px 20px;
+}
+
+#sidebar-primary,
+#sidebar-task {
 	background: #222;
+	padding: 10px 20px;
 }

@@ -146,3 +146,11 @@ function pm_register_taxonomies() {
 	register_taxonomy( 'pm_people', array('pm_task'), $people_args );
 	register_taxonomy( 'pm_priority', array('pm_task'), $priority_args );
 }
+
+register_sidebar(array(
+  'name' => __( 'Task Sidebar' ),
+  'id' => 'pm_task',
+  'description' => __( 'Widgets in this area will be shown on the task page.' ),
+  'before_title' => '<h1>',
+  'after_title' => '</h1>'
+));

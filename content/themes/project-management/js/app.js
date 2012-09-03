@@ -67,4 +67,5 @@ jQuery(window).ready(function($) {
     windowHeight = $(window).height();
     windowWidth = $(window).width();
 	$('#sidebar-primary').css('height', windowHeight);
+	$('#sidebar-task').css('height', windowHeight);
 });
