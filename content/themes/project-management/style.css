@@ -7,3 +7,29 @@
  * (c) 2012 Develop Daly. All Rights Reserved
  * http://developdaly.com
  */
+
+/*
+ * Site specific styles (i.e. stuff you'd only see on this site)
+ ***********************************************************/
+body {
+	background: #e0e0e0;
+	font: 11px/1.625 "Open Sans", Arial, Helvetica, sans-serif;
+}
+.container-fluid {
+	margin: 0;
+	padding: 0;
+}
+
+#header {
+	background: #fff;
+}
+
+#site-title,
+#site-description {
+	font-size: 11px;
+	margin: 0;
+}
+
+#sidebar-primary {
+	background: #222;
+}

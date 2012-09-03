@@ -49,7 +49,7 @@
 	
 	<?php get_template_part( 'menu', 'primary' ); // Loads the menu-primary.php template. ?>
 
-	<div id="container" class="container">
+	<div id="container" class="container-fluid">
 
 		<?php do_atomic( 'before_header' ); // marketing_before_header ?>
 
@@ -60,7 +60,6 @@
 			<div class="row">
 
 				<div id="branding" class="span9">
-					<a href="<?php echo get_bloginfo( 'url' ); ?>"><img id="logo" src="<?php echo get_stylesheet_directory_uri(); ?>/images/santander-logo-internal.png" alt="Santander Consumer USA" /></a>
 					<?php hybrid_site_title(); ?>
 					<?php hybrid_site_description(); ?>
 				</div><!-- #branding -->
@@ -79,12 +78,6 @@
 
 		<?php do_atomic( 'before_main' ); // marketing_before_main ?>
 
-		<div id="main">
-			
-			<div class="row-fluid">
-
-			<?php do_atomic( 'open_main' ); // marketing_open_main ?>
-
 			<?php if ( current_theme_supports( 'breadcrumb-trail' ) ) { ?>
 				
 				<div class="span12">
@@ -92,3 +85,9 @@
 				</div>
 			
 			<?php } ?>
+			
+		<div id="main">
+			
+			<div class="row-fluid">
+
+			<?php do_atomic( 'open_main' ); // marketing_open_main ?>

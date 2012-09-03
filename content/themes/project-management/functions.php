@@ -46,7 +46,7 @@ function marketing_theme_setup() {
 	add_theme_support( 'dev-stylesheet' );
 	add_theme_support( 'loop-pagination' );
 	add_theme_support( 'get-the-image' );
-	//add_theme_support( 'breadcrumb-trail' );
+	add_theme_support( 'breadcrumb-trail' );
 	add_theme_support( 'cleaner-gallery' );
 	
 	/* Adds custom stylesheet to the TinyMCE editor. */
@@ -58,9 +58,6 @@ function marketing_theme_setup() {
 	/* Load CSS and scripts. */
 	add_action( 'wp_enqueue_scripts', 'marekting_load_files' );
 	
-	/* Unload CSS and scripts. */
-	add_action( 'wp_enqueue_scripts', 'marekting_unload_files', 90 );
-
 	/* Embed width/height defaults. */
 	add_filter( 'embed_defaults', 'marekting_embed_defaults' );
 
@@ -68,16 +65,8 @@ function marketing_theme_setup() {
 	add_filter( 'sidebars_widgets', 'marekting_disable_sidebars' );
 	add_action( 'template_redirect', 'marekting_columns' );
 	
-	/* Allows for custom mime types to be uploaded (ex. PSD) */
-	add_filter('upload_mimes', 'custom_upload_mimes');
-	
-	/* Change the RSS feed cache time. */
-	add_filter( 'wp_feed_cache_transient_lifetime', create_function('$a', 'return 300;') );
-
 	/* Set the content width. */
 	hybrid_set_content_width( 720 );
-	
-	register_sidebar(array( 'name' => __( 'Style Guide' ), 'id' => 'style_guide' ));
 }
 
 /**
@@ -89,36 +78,13 @@ function marekting_load_files() {
 	$theme  = wp_get_theme();
 	
 	wp_enqueue_style( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'css/bootstrap.min.css', '', $theme->version );
-	wp_enqueue_style( 'global', trailingslashit ( get_template_directory_uri() ) .'css/global.css', array(), $theme->version );
 	wp_enqueue_style( 'style', trailingslashit ( get_template_directory_uri() ) .'style.css', array(), $theme->version );
-	
-    wp_register_style( 'ie9', get_bloginfo( 'stylesheet_directory' ) . '/css/ie.css', false, $theme->version );
-    $GLOBALS['wp_styles']->add_data( 'ie9', 'conditional', 'lte IE 9' );
-    wp_enqueue_style( 'ie9' );
 			
     wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'js/bootstrap.min.js', array(), $theme->version, false );
-	//wp_enqueue_script( 'app', trailingslashit ( get_template_directory_uri() ) .'js/marketing.js', array( 'jquery' ), $theme->version, false );
-
-	if ( 'style_guide' == get_post_type() && is_singular( 'style_guide') ) {
-		wp_enqueue_style( 'style-guide', trailingslashit ( get_template_directory_uri() ) .'css/style-guide.css', '', $theme->version );
-	}
+	wp_enqueue_script( 'app', trailingslashit ( get_template_directory_uri() ) .'js/app.js', array( 'jquery' ), $theme->version, false );
 
 }
-
-/**
- * Deregisters CSS and JS.
- *
- * @since 0.1.0
- */
-function marekting_unload_files() {
-	
-	if ( is_singular( 'style_guide') ) {
-		wp_dequeue_style( 'style' );
-		wp_dequeue_script( 'app' );
-	}
-}
-
 
 function custom_upload_mimes ( $existing_mimes = array() ) {
     $existing_mimes['psd'] = 'image/vnd.adobe.photoshop';

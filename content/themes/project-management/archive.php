@@ -19,16 +19,7 @@ get_header(); // Loads the header.php template. ?>
 		<div class="hfeed">
 
 			<?php get_template_part( 'loop-meta' ); // Loads the loop-meta.php template. ?>
-			
-			<?php if ( is_post_type_archive( 'style_guide' ) ) : ?>
-				
-				<?php
-				// Hide all style_guide child posts
-				global $query_string;
-				query_posts( $query_string . '&post_parent=0&orderby=menu_order&order=ASC' ); ?>
-				
-			<?php endif; ?>
-
+		
 			<?php if ( have_posts() ) : ?>
 
 				<?php while ( have_posts() ) : the_post(); ?>
