@@ -38,6 +38,9 @@ body.logged-in {
 	font-size: 11px;
 	padding: 5px 20px;
 }
+.breadcrumbs a {
+	color: #757C82;
+}
 
 #content {
 	padding: 20px 0 20px 20px;
