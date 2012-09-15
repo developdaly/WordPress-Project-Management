@@ -7,3 +7,4 @@
 .project
 *.log
 /content/plugins/gravityforms/
+/content/plugins/gravity-forms-custom-post-types/
