@@ -27,36 +27,40 @@
 require_once( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/register.php' );
 require_once( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/comments.php' );
 require_once( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/template-tags.php' );
+require_once( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/new-task.php' );
 require_once( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/admin/options.php' );
 
-/* Register post types. */
+// Register post types.
 add_action( 'init', 'pm_register_post_types' );
 
-/* Register taxonomies. */
+// Register taxonomies.
 add_action( 'init', 'pm_register_taxonomies' );
 
-/* Update post subscribers. */
+// Update post subscribers.
 add_action( 'init', 'pm_update_subscribers' );
 
-/* Add fields to the comment form. */
+// Add fields to the comment form.
 add_action( 'comment_form_logged_in_after', 'pm_comment_before_fields' );
 
-/* Add fields to the comment form. */
+// Add fields to the comment form.
 add_action( 'comment_form_after_fields', 'pm_comment_before_fields' );
 
-/* Insert a comment. */
+// Insert a comment.
 add_action( 'comment_post', 'pm_insert_comment', 10, 1 );
 
-/* Require login. */
+// Require login.
 add_action( 'get_header', 'walled_garden' );
 
-/* Load custom templates. */
+// Load custom templates.
 add_action( 'template_redirect', 'pm_templates' );
 
-/* Add WYSISYG editor to comment form. */
+// Add WYSISYG editor to comment form.
 add_filter( 'comment_form_field_comment', 'pm_comment_editor' );
 
-/* Creates the shortcut to output the archive of tasks. */
+// Populate the new task form with users.
+add_filter( 'gform_pre_render_1', 'pm_users' );
+
+// Creates the shortcut to output the archive of tasks.
 add_shortcode( 'pm_tasks', 'pm_tasks' );
 
 function walled_garden() {

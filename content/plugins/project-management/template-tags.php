@@ -96,4 +96,3 @@ function pm_templates() {
         exit;
     }
 }
-
