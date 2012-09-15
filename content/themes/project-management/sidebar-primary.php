@@ -14,12 +14,16 @@ if ( is_active_sidebar( 'primary' ) ) : ?>
 	<?php do_atomic( 'before_sidebar_primary' ); // marketing_before_sidebar_primary ?>
 
 	<div id="sidebar-primary" class="span3">
+		
+		<div class="well">
 
 		<?php do_atomic( 'open_sidebar_primary' ); // marketing_open_sidebar_primary ?>
 		
 		<?php dynamic_sidebar( 'primary' ); ?>
 
 		<?php do_atomic( 'close_sidebar_primary' ); // marketing_close_sidebar_primary ?>
+		
+		</div>
 
 	</div><!-- #sidebar-primary .aside -->
 

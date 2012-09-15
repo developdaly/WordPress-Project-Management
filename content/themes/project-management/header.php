@@ -44,7 +44,7 @@
 </head>
 
 <body class="<?php hybrid_body_class(); ?>">
-
+	
 	<?php do_atomic( 'open_body' ); // marketing_open_body ?>
 	
 	<?php get_template_part( 'menu', 'primary' ); // Loads the menu-primary.php template. ?>
@@ -53,9 +53,15 @@
 
 		<?php do_atomic( 'before_main' ); // marketing_before_main ?>
 
-		<?php if ( current_theme_supports( 'breadcrumb-trail' ) ) breadcrumb_trail( array( 'before' => __( 'You are here:', hybrid_get_parent_textdomain() ), 'front_page' => false ) ); ?>
+		<?php
+		if ( current_theme_supports( 'breadcrumb-trail' ) ):
+			echo '<div class="breadcrumb">';
+			breadcrumb_trail( array( 'before' => __( 'You are here:', hybrid_get_parent_textdomain() ), 'front_page' => false ) );
+			echo '</div>';
+		endif;
+		?>
 			
-		<div id="main">
+		<div id="main"></div>
 			
 			<div class="row-fluid">
 

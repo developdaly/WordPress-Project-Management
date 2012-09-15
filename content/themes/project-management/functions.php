@@ -32,6 +32,8 @@ function marketing_theme_setup() {
 
 	/* Get action/filter hook prefix. */
 	$prefix = hybrid_get_prefix();
+	
+	require_once ( get_stylesheet_directory() . '/admin/theme-options.php' );
 
 	/* Add theme support for core framework features. */
 	add_theme_support( 'hybrid-core-menus', array( 'primary', 'secondary', 'subsidiary' ) );
@@ -76,10 +78,16 @@ function marketing_theme_setup() {
  */
 function marekting_load_files() {
 	$theme  = wp_get_theme();
-	
-	wp_enqueue_style( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'css/bootstrap.min.css', '', $theme->version );
+
+	$swatch = hybrid_get_setting( 'pm_theme_swatch' );
+	if ( $swatch ) {
+		wp_enqueue_style( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'swatches/'. $swatch, '', $theme->version );
+	} else {
+		wp_enqueue_style( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'swatches/bootstrap.min.css', '', $theme->version );
+	}
+		
 	wp_enqueue_style( 'style', trailingslashit ( get_template_directory_uri() ) .'style.css', array(), $theme->version );
-			
+	
     wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'js/bootstrap.min.js', array(), $theme->version, false );
 	wp_enqueue_script( 'app', trailingslashit ( get_template_directory_uri() ) .'js/app.js', array( 'jquery' ), $theme->version, false );
