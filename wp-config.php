@@ -7,10 +7,10 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 	include( dirname( __FILE__ ) . '/local-config.php' );
 } else {
 	define( 'WP_LOCAL_DEV', false );
-	define( 'DB_NAME',		'projmgmt' );
-	define( 'DB_USER',		'projmgmt' );
-	define( 'DB_PASSWORD',	'projmgmt' ); //BMnF-TrpxH^!
-	define( 'DB_HOST',		'instance27262.db.xeround.com:14807' ); // Probably 'localhost'
+	define( 'DB_NAME',		'devdal1_pm_prod' );
+	define( 'DB_USER',		'devdal1_pm' );
+	define( 'DB_PASSWORD',	'-5V.1734*^m6' ); //BMnF-TrpxH^!
+	define( 'DB_HOST',		'184.173.232.56' ); // Probably 'localhost'
 }
 
 // ========================

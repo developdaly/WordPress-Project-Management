@@ -1,15 +1,18 @@
 <?php
 /*
-This is a sample local-config.php file
-In it, you *must* include the four main database defines
-
-You may include other settings here that you only want enabled on your local development checkouts
+ * This is a sample local-config.php file
+ * 
+ * 1) Copy this file to the same directory and rename it local-config.php.
+ * 2) Change the WP_HOME and WP_SITEURL constants to match your local domain
 */
 
-define( 'DB_NAME', 'local-db-name' );
-define( 'DB_USER', 'local-db-user' );
-define( 'DB_PASSWORD', 'local-db-password' );
-define( 'DB_HOST', 'localhost' ); // Probably 'localhost'
+define( 'DB_NAME',		'devdal1_pm_prod' );
+define( 'DB_USER',		'devdal1_pm' );
+define( 'DB_PASSWORD',	'-5V.1734*^m6' );
+define( 'DB_HOST',		'184.173.232.56' );
+
+define( 'WP_HOME','http://pm.local' );
+define( 'WP_SITEURL','http://pm.local/wp' );
 
 // Enable WP_DEBUG mode
 define( 'WP_DEBUG', true );
