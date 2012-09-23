@@ -61,7 +61,7 @@ add_filter( 'comment_form_field_comment', 'pm_comment_editor' );
 add_filter( 'gform_pre_render_1', 'pm_users' );
 
 // Creates the shortcut to output the archive of tasks.
-add_shortcode( 'pm_tasks', 'pm_tasks' );
+add_shortcode( 'pm_new_task', 'pm_new_task_form' );
 
 function walled_garden() {
 	if( ! is_user_logged_in() )
