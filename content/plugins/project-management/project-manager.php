@@ -48,9 +48,6 @@ add_action( 'comment_form_after_fields', 'pm_comment_before_fields' );
 // Insert a comment.
 add_action( 'comment_post', 'pm_insert_comment', 10, 1 );
 
-// Require login.
-add_action( 'get_header', 'walled_garden' );
-
 // Load custom templates.
 add_action( 'template_redirect', 'pm_templates' );
 
@@ -62,8 +59,3 @@ add_filter( 'gform_pre_render_1', 'pm_users' );
 
 // Creates the shortcut to output the archive of tasks.
 add_shortcode( 'pm_new_task', 'pm_new_task_form' );
-
-function walled_garden() {
-	if( ! is_user_logged_in() )
-		wp_redirect( '/wp-login.php' );
-}
