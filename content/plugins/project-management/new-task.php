@@ -6,11 +6,11 @@ function pm_new_task_form( $allowNotLoggedInuser = 'yes' ) {
 		return;
 	}
 
-	$output = '<form id="pmform" class="form-horizontal" action="" method="post"enctype="multipart/form-data">';
+	$output = '<form id="pmform" class="form-horizontal" action="" method="post" enctype="multipart/form-data">';
 	
 		$output .= '<div id="pm-text">';
 		
-			$output .= '<div id="pm-response" style="background-color:#E6E6FA ;color:blue;"></div>';
+			$output .= '<div id="pm-response"></div>';
 		
 			$output .= '<div class="control-group"><label class="control-label" for="pmtitle">Title</label>';
 			$output .= '<div class="controls"><input class="input-xxlarge" type="text" id="pmtitle" name="pmtitle" placeholder="Task title..."></div></div>';
@@ -18,19 +18,27 @@ function pm_new_task_form( $allowNotLoggedInuser = 'yes' ) {
 			$output .= '<div class="control-group"><label class="control-label" for="pmcontents">Contents</label>';
 			$output .= '<div class="controls"><textarea class="input-xxlarge" id="pmcontents" name="pmcontents" rows="10" cols="20" placeholder="Describe your task..."></textarea></div></div>';
 
+			$output .= '<div class="control-group"><label class="control-label" for="pmassignto">Assign To</label>';
+			$output .= '<div class="controls"><select multiple="multiple">';
+		
+			$users = get_users();
+			foreach( $users as $user) { 
+				$output .= '<option name="pmassignto" id="pmassignto" value="'. $user->ID .'">'. $user->display_name .'</option>';
+			}
+			$output .= '</select></div></div>';
+			
 			$output .= '<div class="control-group"><label class="control-label" for="pmcategorycheck">Category</label>';
-			$output .= '<div class="controls">';
+			$output .= '<div class="controls"><select multiple="multiple">';
 		
 			$categories = get_categories(array('hide_empty'=> 0));
 			foreach($categories as $category) { 
-				$output .= '<label class="checkbox"><input type="checkbox" name="pmcategorycheck" id="pmcategorycheck" value="'. $category->term_id .'">';  
-				$output .= $category->cat_name .'</label>';
+				$output .= '<option name="pmcategorycheck" id="pmcategorycheck" value="'. $category->term_id .'">'. $category->cat_name .'</option>';
 			}
-			$output .= '</div></div>';
+			$output .= '</select></div></div>';
 			
-			$output .= '<div class="control-group"><div class="controls">';
-			$output .= '<a class="btn" onclick="pmaddpost(pmtitle.value,pmcontents.value,pmcategorycheck);" style="cursor: pointer"><b>Create Post</b></a>';
-			$output .= '</div></div>';
+			$output .= '<div class="form-actions">';
+			$output .= '<a class="btn btn-primary" onclick="pmaddpost(pmtitle.value,pmcontents.value,pmcategorycheck,pmassignto);">Create Task</a>';
+			$output .= '</div>';
 			
 		$output .= '</div>';
 		
@@ -52,7 +60,9 @@ function pm_addpost() {
 	$title = $_POST['pmtitle'];
 	$content =	$_POST['pmcontents'];
 	$category = $_POST['pmcategory'];
+	$assignto = $_POST['pmassignto'];
 	
+	// Create the task
 	$post_id = wp_insert_post( array(
 		'post_title'		=> $title,
 		'post_content'		=> $content,
@@ -62,8 +72,12 @@ function pm_addpost() {
 		'post_type'			=> 'pm_task'
 	) );
 	
-	if($post_id != 0  ) {
+	// Attach meta data
+	update_post_meta( $post_id, 'pm_task_assign_to', $assignto );	
+	
+	if( $post_id != 0  ) {		
 		$results = '<div class="alert alert-success">Task added successfully</div>';
+		print_r( $_POST );
 	} else {
 		$results = '<div class="alert alert-error">An error occured while adding your task</div>';
 	}

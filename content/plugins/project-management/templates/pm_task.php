@@ -8,6 +8,7 @@
  * @package Marketing
  * @subpackage Template
  */
+global $post;
 if ($_FILES) {
   foreach ($_FILES as $file => $array) {
     $newupload = insert_attachment($file,$post->ID);
@@ -68,7 +69,7 @@ get_header(); // Loads the header.php template. ?>
 								?>
 								
 								<?php echo get_the_term_list( $post->ID, 'pm_statuses', '<span class="task-status">', ', ', '</span>' ); ?>
-								
+																			
 								<h1><?php echo the_title_attribute(); ?></h1>
 										
 							</div>
@@ -80,7 +81,18 @@ get_header(); // Loads the header.php template. ?>
 							<div id="task-main" class="span8">
 								
 								<div class="entry-content">
-								
+
+									<h3>Assigned to...</h3>
+									<?php								
+									$assigned = get_post_meta( $post->ID, 'pm_task_assign_to', true );
+									$users = get_users( array( 'include' => $assigned ) );
+									echo '<ul>';
+									foreach( $users as $user) { 
+										echo  '<li>'. $user->display_name .'</li>';
+									}
+									echo '</ul>';
+									?>
+																
 									<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', hybrid_get_parent_textdomain() ) ); ?>
 									<?php wp_link_pages( array( 'before' => '<p class="page-links">' . __( 'Pages:', hybrid_get_parent_textdomain() ), 'after' => '</p>' ) ); ?>
 									

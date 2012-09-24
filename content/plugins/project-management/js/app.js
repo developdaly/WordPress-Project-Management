@@ -1,13 +1,21 @@
-function pmaddpost(posttitle, postcontent, postcategory) {
+function pmaddpost(posttitle, postcontent, postcategory, postassignto) {
 
-	var postCatergoryArray = new Array();
+	var postCatergoryArray = [];
 
 	for (var i = 0; i < postcategory.length; i++) {
-		if (postcategory[i].checked) {
+		if (postcategory[i].selected) {
 			postCatergoryArray[postCatergoryArray.length] = postcategory[i].value;
 		}
 	}
 
+	var postAssignToArray = [];
+
+	for (var i = 0; i < pmassignto.length; i++) {
+		if (postassignto[i].selected) {
+			postAssignToArray[postAssignToArray.length] = postassignto[i].value;
+		}
+	}
+		
 	jQuery.ajax({
 
 		type : 'POST',
@@ -18,7 +26,8 @@ function pmaddpost(posttitle, postcontent, postcategory) {
 			action : 'pm_addpost',
 			pmtitle : posttitle,
 			pmcontents : postcontent,
-			pmcategory : postCatergoryArray
+			pmcategory : postCatergoryArray,
+			pmassignto : postAssignToArray
 		},
 
 		success : function(data, textStatus, XMLHttpRequest) {
@@ -47,6 +56,12 @@ function resetvalues() {
 
 	var countCheckBoxes = categories.length;
 	for (var i = 0; i < countCheckBoxes; i++)
-		categories[i].checked = false;
+		categories[i].selected = false;
+		
+	var users = document.forms['pmform'].elements['pmassigntocheck'];
 
+	var countCheckBoxes = users.length;
+	for (var i = 0; i < countCheckBoxes; i++)
+		users[i].selected = false;
+	
 }
