@@ -68,7 +68,7 @@ get_header(); // Loads the header.php template. ?>
 								if( $user_story_link && $user_story ) echo '</a>';
 								?>
 								
-								<?php echo get_the_term_list( $post->ID, 'pm_statuses', '<span class="task-status">', ', ', '</span>' ); ?>
+								<?php echo get_the_term_list( $post->ID, 'pm_status', '<span class="task-status">', ', ', '</span>' ); ?>
 																			
 								<h1><?php echo the_title_attribute(); ?></h1>
 										

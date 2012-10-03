@@ -2,7 +2,6 @@
 
 function pm_register_post_types() {
 
-	/* Register 'task'. */
     $task_labels = array( 
         'name' => _x( 'Tasks', 'pm_task' ),
         'singular_name' => _x( 'Task', 'pm_task' ),
@@ -43,26 +42,26 @@ function pm_register_post_types() {
 
 function pm_register_taxonomies() {
 
-    $statuses_labels = array( 
-        'name' => _x( 'Statuses', 'pm_statuses' ),
-        'singular_name' => _x( 'Status', 'pm_statuses' ),
-        'search_items' => _x( 'Search Statuses', 'pm_statuses' ),
-        'popular_items' => _x( 'Popular Statuses', 'pm_statuses' ),
-        'all_items' => _x( 'All Statuses', 'pm_statuses' ),
-        'parent_item' => _x( 'Parent Status', 'pm_statuses' ),
-        'parent_item_colon' => _x( 'Parent Status:', 'pm_statuses' ),
-        'edit_item' => _x( 'Edit Status', 'pm_statuses' ),
-        'update_item' => _x( 'Update Status', 'pm_statuses' ),
-        'add_new_item' => _x( 'Add New Status', 'pm_statuses' ),
-        'new_item_name' => _x( 'New Status', 'pm_statuses' ),
-        'separate_items_with_commas' => _x( 'Separate statuses with commas', 'pm_statuses' ),
-        'add_or_remove_items' => _x( 'Add or remove statuses', 'pm_statuses' ),
-        'choose_from_most_used' => _x( 'Choose from the most used statuses', 'pm_statuses' ),
-        'menu_name' => _x( 'Statuses', 'pm_statuses' ),
+    $status_labels = array( 
+        'name' => _x( 'Statuses', 'pm_status' ),
+        'singular_name' => _x( 'Status', 'pm_status' ),
+        'search_items' => _x( 'Search Statuses', 'pm_status' ),
+        'popular_items' => _x( 'Popular Statuses', 'pm_status' ),
+        'all_items' => _x( 'All Statuses', 'pm_status' ),
+        'parent_item' => _x( 'Parent Status', 'pm_status' ),
+        'parent_item_colon' => _x( 'Parent Status:', 'pm_status' ),
+        'edit_item' => _x( 'Edit Status', 'pm_status' ),
+        'update_item' => _x( 'Update Status', 'pm_status' ),
+        'add_new_item' => _x( 'Add New Status', 'pm_status' ),
+        'new_item_name' => _x( 'New Status', 'pm_status' ),
+        'separate_items_with_commas' => _x( 'Separate statuses with commas', 'pm_status' ),
+        'add_or_remove_items' => _x( 'Add or remove statuses', 'pm_status' ),
+        'choose_from_most_used' => _x( 'Choose from the most used statuses', 'pm_status' ),
+        'menu_name' => _x( 'Statuses', 'pm_status' ),
     );
 
-    $statuses_args = array( 
-        'labels' => $statuses_labels,
+    $status_args = array( 
+        'labels' => $status_labels,
         'public' => true,
         'show_in_nav_menus' => true,
         'show_ui' => true,
@@ -70,39 +69,6 @@ function pm_register_taxonomies() {
         'hierarchical' => true,
         'rewrite' => array( 
             'slug' => 'statuses', 
-            'with_front' => true,
-            'hierarchical' => true
-        ),
-        'query_var' => true
-    );
-
-    $people_labels = array( 
-        'name' => _x( 'People', 'pm_people' ),
-        'singular_name' => _x( 'Person', 'pm_people' ),
-        'search_items' => _x( 'Search People', 'pm_people' ),
-        'popular_items' => _x( 'Popular People', 'pm_people' ),
-        'all_items' => _x( 'All People', 'pm_people' ),
-        'parent_item' => _x( 'Parent Person', 'pm_people' ),
-        'parent_item_colon' => _x( 'Parent Person:', 'pm_people' ),
-        'edit_item' => _x( 'Edit Person', 'pm_people' ),
-        'update_item' => _x( 'Update Person', 'pm_people' ),
-        'add_new_item' => _x( 'Add New Person', 'pm_people' ),
-        'new_item_name' => _x( 'New Person', 'pm_people' ),
-        'separate_items_with_commas' => _x( 'Separate people with commas', 'pm_people' ),
-        'add_or_remove_items' => _x( 'Add or remove people', 'pm_people' ),
-        'choose_from_most_used' => _x( 'Choose from the most used people', 'pm_people' ),
-        'menu_name' => _x( 'People', 'pm_people' ),
-    );
-
-    $people_args = array( 
-        'labels' => $people_labels,
-        'public' => true,
-        'show_in_nav_menus' => true,
-        'show_ui' => true,
-        'show_tagcloud' => true,
-        'hierarchical' => true,
-        'rewrite' => array( 
-            'slug' => 'people', 
             'with_front' => true,
             'hierarchical' => true
         ),
@@ -142,15 +108,14 @@ function pm_register_taxonomies() {
         'query_var' => true
     );
 		
-	register_taxonomy( 'pm_statuses', array('pm_task'), $statuses_args );
-	register_taxonomy( 'pm_people', array('pm_task'), $people_args );
+	register_taxonomy( 'pm_status', array('pm_task'), $status_args );
 	register_taxonomy( 'pm_priority', array('pm_task'), $priority_args );
 }
 
 register_sidebar(array(
-  'name' => __( 'Task Sidebar' ),
-  'id' => 'pm_task',
-  'description' => __( 'Widgets in this area will be shown on the task page.' ),
-  'before_title' => '<h1>',
-  'after_title' => '</h1>'
+	'name' => __( 'Task Sidebar' ),
+	'id' => 'pm_task',
+	'description' => __( 'Widgets in this area will be shown on the task page.' ),
+	'before_title' => '<h1>',
+	'after_title' => '</h1>'
 ));

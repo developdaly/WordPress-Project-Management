@@ -50,11 +50,20 @@ get_header(); // Loads the header.php template. ?>
 							
 							<td><a href="<?php the_permalink(); ?>"><?php the_title_attribute(); ?></a></td>
 															
-							<td><?php echo get_the_term_list( $post->ID, 'pm_statuses', '<span class="label task-status">', ', ', '</span>' ); ?></td>
+							<td><?php echo get_the_term_list( $post->ID, 'pm_status', '<span class="label task-status">', ', ', '</span>' ); ?></td>
 							
 							<td><?php echo get_the_term_list( $post->ID, 'pm_priority', '<span class="task-priority">', ', ', '</span>' ); ?></td>
-									
-							<td><?php echo get_the_term_list( $post->ID, 'pm_people', '', ', ', '' ); ?></td>
+							<td>
+								<?php								
+								$assigned = get_post_meta( $post->ID, 'pm_task_assign_to' );
+								$users = get_users( array( 'include' => $assigned ) );
+								echo '<ul class="unstyled">';
+								foreach( $users as $user) { 
+									echo  '<li><a href="#">'. $user->display_name .'</a></li>';
+								}
+								echo '</ul>';
+								?>
+							</td>
 							
 							<td><?php echo( '<abbr title="'. get_the_date("l, F jS, Y, g:i a", strtotime( $date )) . '">'. get_the_date("M jS @ g:i a", strtotime( $date )) . '</abbr>' ); ?></td>
 							

@@ -1,8 +1,9 @@
-function pmaddpost(posttitle, postcontent, postcategory, poststatus, postassignto) {
+function pmaddpost(posttitle, postcontent, postcategory, poststatus, postpriority, postassignto) {
 	"use strict";
 
 	var postCatergoryArray = new Array();
 	var postStatusArray = new Array();
+	var postPriorityArray = new Array();
 	var postAssignToArray = new Array();
 	
     for ( var i=0; i < postcategory.length; i++ ) {  
@@ -17,6 +18,12 @@ function pmaddpost(posttitle, postcontent, postcategory, poststatus, postassignt
 		}
 	}
 
+	 for ( var i=0; i < postpriority.length; i++ ) {  
+		if ( postpriority[i].selected ) {
+			postPriorityArray[postPriorityArray.length] = postpriority[i].value;
+		}
+	}
+	
 	 for ( var i=0; i < pmassignto.length; i++ ) {  
 		if ( postassignto[i].selected ) {
 			postAssignToArray[postAssignToArray.length] = postassignto[i].value;
@@ -33,6 +40,7 @@ function pmaddpost(posttitle, postcontent, postcategory, poststatus, postassignt
 			pmcontents	: postcontent,
 			pmcategory	: postCatergoryArray,
 			pmstatus	: postStatusArray,
+			pmpriority	: postPriorityArray,
 			pmassignto	: postAssignToArray
 		},
 		success : function(data, textStatus, XMLHttpRequest) {
@@ -40,7 +48,7 @@ function pmaddpost(posttitle, postcontent, postcategory, poststatus, postassignt
 			jQuery(id).html('');
 			jQuery(id).append(data);
 
-			//resetvalues();
+			resetvalues();
 		},
 		error : function(MLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
@@ -52,21 +60,13 @@ function resetvalues() {
 	"use strict";
 
 	var title			=	document.getElementById("pmtitle"),
-		content			=	document.getElementById("pmcontents"),
-		categories		=	document.forms.pmform.elements.pmcategorycheck,
-		statuses		=	document.forms.pmform.elements.pmstatuscheck,
-		users			=	document.forms.pmform.elements.pmassigntocheck,
-		countStatus		=	statuses.length,
-		countCategory	=	categories.length,
-		countUsers		=	users.length,
-		i1 = 0,
-		i2 = 0,
-		i3 = 0;
+		content			=	document.getElementById("pmcontents");
 		
 	title.value			= '';
 	content.value		= '';
-	$('#pmcategorycheck').prop('selectedIndex',0);
-	$('#pmstatuscheck').prop('selectedIndex',0);
-	$('#pmassigntocheck').prop('selectedIndex',0);
+	jQuery('#pmcategorycheck').prop('selectedIndex',0);
+	jQuery('#pmstatuscheck').prop('selectedIndex',0);
+	jQuery('#pmpritoritycheck').prop('selectedIndex',0);
+	jQuery('#pmassigntocheck').prop('selectedIndex',0);
 	
 }
