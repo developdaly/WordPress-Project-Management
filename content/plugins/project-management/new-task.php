@@ -73,7 +73,15 @@ function pm_addpost() {
 	) );
 	
 	// Attach meta data
-	update_post_meta( $post_id, 'pm_task_assign_to', $assignto );	
+	update_post_meta( $post_id, 'pm_task_assign_to', $assignto );
+	
+	// Mail the assigned users
+	$users = get_users( array( 'include' => $assignto ) );
+	foreach ( $users as $user ) {
+		$assigned[] = $user->user_email;
+	}
+	
+	wp_mail( $assigned, 'New Task: '. get_the_title( $post_id ), 'The message' );
 	
 	if( $post_id != 0  ) {		
 		$results = '<div class="alert alert-success">Task added successfully</div>';
