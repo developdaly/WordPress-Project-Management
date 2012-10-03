@@ -1,4 +1,4 @@
-function pmaddpost(posttitle, postcontent, postcategory, postassignto) {
+function pmaddpost(posttitle, postcontent, postcategory, poststatus, postassignto) {
 
 	var postCatergoryArray = [];
 
@@ -8,6 +8,14 @@ function pmaddpost(posttitle, postcontent, postcategory, postassignto) {
 		}
 	}
 
+	var postStatusArray = [];
+
+	for (var i = 0; i < poststatus.length; i++) {
+		if (poststatus[i].selected) {
+			postStatusArray[postStatusArray.length] = poststatus[i].value;
+		}
+	}
+	
 	var postAssignToArray = [];
 
 	for (var i = 0; i < pmassignto.length; i++) {
@@ -27,6 +35,7 @@ function pmaddpost(posttitle, postcontent, postcategory, postassignto) {
 			pmtitle : posttitle,
 			pmcontents : postcontent,
 			pmcategory : postCatergoryArray,
+			pmstatus : postStatusArray,
 			pmassignto : postAssignToArray
 		},
 
@@ -57,7 +66,13 @@ function resetvalues() {
 	var countCheckBoxes = categories.length;
 	for (var i = 0; i < countCheckBoxes; i++)
 		categories[i].selected = false;
-		
+
+	var statuses = document.forms['pmform'].elements['pmstatuscheck'];
+
+	var countCheckBoxes = pmstatus.length;
+	for (var i = 0; i < countCheckBoxes; i++)
+		pmstatus[i].selected = false;
+				
 	var users = document.forms['pmform'].elements['pmassigntocheck'];
 
 	var countCheckBoxes = users.length;

@@ -35,9 +35,18 @@ function pm_new_task_form( $allowNotLoggedInuser = 'yes' ) {
 				$output .= '<option name="pmcategorycheck" id="pmcategorycheck" value="'. $category->term_id .'">'. $category->cat_name .'</option>';
 			}
 			$output .= '</select></div></div>';
-			
+
+			$output .= '<div class="control-group"><label class="control-label" for="pmstatuscheck">Statuses</label>';
+			$output .= '<div class="controls"><select multiple="multiple">';
+		
+			$statuses = get_categories( array( 'hide_empty' => 0, 'taxonomy' => 'pm_statuses' ) );
+			foreach( $statuses as $status ) { 
+				$output .= '<option name="pmstatuscheck" id="pmstatuscheck" value="'. $status->term_id .'">'. $status->cat_name .'</option>';
+			}
+			$output .= '</select></div></div>';
+						
 			$output .= '<div class="form-actions">';
-			$output .= '<a class="btn btn-primary" onclick="pmaddpost(pmtitle.value,pmcontents.value,pmcategorycheck,pmassignto);">Create Task</a>';
+			$output .= '<a class="btn btn-primary" onclick="pmaddpost(pmtitle.value,pmcontents.value,pmcategorycheck,pmstatuscheck,pmassignto);">Create Task</a>';
 			$output .= '</div>';
 			
 		$output .= '</div>';
@@ -60,6 +69,7 @@ function pm_addpost() {
 	$title = $_POST['pmtitle'];
 	$content =	$_POST['pmcontents'];
 	$category = $_POST['pmcategory'];
+	$statuses = $_POST['pmstatus'];
 	$assignto = $_POST['pmassignto'];
 	
 	// Create the task
@@ -69,7 +79,8 @@ function pm_addpost() {
 		'post_status'		=> 'publish',
 		'post_category'		=> $category,
 		'post_author'       => '1',
-		'post_type'			=> 'pm_task'
+		'post_type'			=> 'pm_task',
+		'tax_input'			=> array( 'pm_statuses' => $statuses ) 
 	) );
 	
 	// Attach meta data
@@ -77,18 +88,21 @@ function pm_addpost() {
 	
 	// Mail the assigned users
 	$users = get_users( array( 'include' => $assignto ) );
+	$assigned = array();
 	foreach ( $users as $user ) {
 		$assigned[] = $user->user_email;
 	}
+	// Uncomment when ready to mail tasks
+	//wp_mail( $assigned, 'New Task: '. get_the_title( $post_id ), 'The message' );
 	
-	wp_mail( $assigned, 'New Task: '. get_the_title( $post_id ), 'The message' );
-	
+	// Success?
 	if( $post_id != 0  ) {		
 		$results = '<div class="alert alert-success">Task added successfully</div>';
 		print_r( $_POST );
 	} else {
 		$results = '<div class="alert alert-error">An error occured while adding your task</div>';
 	}
+	
 	// Return the String
 	die($results);
 }

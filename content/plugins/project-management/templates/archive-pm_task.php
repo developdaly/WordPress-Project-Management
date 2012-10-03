@@ -82,34 +82,11 @@ get_header(); // Loads the header.php template. ?>
 			
 			</div>
 	
-			<?php if ( is_attachment() ) : ?>
-		
-				<div class="loop-nav">
-					<?php previous_post_link( '%link', '<span class="previous left">' . __( '&larr; Return to entry', 'pm_task' ) . '</span>' ); ?>
-				</div><!-- .loop-nav -->
-		
-			<?php elseif ( is_singular( 'post' ) ) : ?>
-		
-				<div class="loop-nav">
-					<?php previous_post_link( '<div class="previous left">' . __( 'Previous Entry: %link', 'pm_task' ) . '</div>', '%title' ); ?>
-					<?php next_post_link( '<div class="next right">' . __( 'Next Entry: %link', 'pm_task' ) . '</div>', '%title' ); ?>
-				</div><!-- .loop-nav -->
-		
-			<?php elseif ( !is_singular() && current_theme_supports( 'loop-pagination' ) ) : loop_pagination( array( 'before' => '<div class="pagination pagination-centered">', 'type' => 'list' ) ); ?>
-		
-			<?php elseif ( !is_singular() && $nav = get_posts_nav_link( array( 'sep' => '', 'prelabel' => '<span class="previous left">' . __( '&larr; Previous', 'pm_task' ) . '</span>', 'nxtlabel' => '<span class="next right">' . __( 'Next &rarr;', 'pm_task' ) . '</span>' ) ) ) : ?>
-		
-				<div class="loop-nav">
-					<?php echo $nav; ?>
-				</div><!-- .loop-nav -->
-		
-			<?php endif; ?>
-	
 		<?php else : ?>
 	
 			<article id="post-0" class="post no-results not-found">
 				<header class="entry-header">
-					<h1 class="entry-title"><?php _e( 'Nothing Found', 'twentyeleven' ); ?></h1>
+					<h2 class="entry-title"><?php _e( 'No tasks found', 'project-management' ); ?></h2>
 				</header><!-- .entry-header -->
 	
 				<div class="entry-content">
