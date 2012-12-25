@@ -18,37 +18,48 @@ get_header(); // Loads the header.php template. ?>
 	<div id="task-organization" class="span3">
 		
 		<div class="well">
-		
-			<!--
+
+			<?php $current_user = wp_get_current_user(); ?>	
 			<ul id="task-assignees" class="nav nav-tabs nav-stacked">
-				<li><a href="/?pm_status=in-progress&post_type=pm_task">My Issues</a></li>
-				<li><a href="/?pm_status=new&post_type=pm_task">Created by you</a></li>
-				<li><a href="/?pm_priority=high&post_type=pm_task">Mentioning you</a></li>
+				<li><a href="/tasks">Everyone's tasks</a></li>
+				<li><a href="<?php echo get_author_posts_url( $current_user->ID ); ?>">Created by you</a></li>
 			</ul>
-			-->
+			
+			<?php
+			$terms = get_terms( 'pm_status' );
+			$count = count($terms);
+			if ( $count > 0 ){
+				echo '<p>Status</p>';
+				echo '<ul id="task-statuses" class="nav nav-pills nav-stacked">';
+				foreach ( $terms as $term ) {
+					echo '<li><a href="'. home_url() .'/?post_type=pm_task&pm_status='. $term->slug .'">' . $term->name . '</a></li>';
+				}
+				echo '</ul>';
+			}
+
+			$terms = get_terms( 'pm_label' );
+			$count = count($terms);
+			if ( $count > 0 ){
+				echo '<p>Label</p>';
+				echo '<ul id="task-labels" class="nav nav-pills nav-stacked">';
+				foreach ( $terms as $term ) {
+					echo '<li><a href="'. home_url() .'/?post_type=pm_task&pm_label='. $term->slug .'">' . $term->name . '</a></li>';
+				}
+				echo '</ul>';
+			}
+
+			$terms = get_terms( 'pm_priority' );
+			$count = count($terms);
+			if ( $count > 0 ){
+				echo '<p>Priority</p>';
+				echo '<ul id="task-priorities" class="nav nav-pills nav-stacked">';
+				foreach ( $terms as $term ) {
+					echo '<li><a href="'. home_url() .'/?post_type=pm_task&pm_priority='. $term->slug .'">' . $term->name . '</a></li>';
+				}
+				echo '</ul>';
+			}			
+			?>
 	
-			<p>Status</p>
-			
-			<ul id="task-statuses" class="nav nav-pills nav-stacked">
-				<li><a href="<?php echo home_url(); ?>/?post_type=pm_task&pm_status=new">new</a></li>
-				<li><a href="<?php echo home_url(); ?>/?post_type=pm_task&pm_status=in-progress">in progress</a></li>
-				<li><a href="<?php echo home_url(); ?>/?post_type=pm_task&pm_status=needs-review">needs review</a></li>
-				<li><a href="<?php echo home_url(); ?>/?post_type=pm_task&pm_status=needs-revision">needs revision</a></li>
-				<li><a href="<?php echo home_url(); ?>/?post_type=pm_task&pm_status=completed">completed</a></li>
-				<li><a href="<?php echo home_url(); ?>/?post_type=pm_task&pm_status=closed">closed</a></li>
-			</ul>
-					
-			<p>Labels</p>
-			
-			<ul id="task-labels" class="nav nav-pills nav-stacked">
-				<li><a href="<?php echo home_url(); ?>/?post_type=pm_task&pm_status=enhancement">enhancement</a></li>
-				<li><a href="<?php echo home_url(); ?>/?post_type=pm_task&pm_status=bug">bug</a></li>
-				<li><a href="<?php echo home_url(); ?>/?post_type=pm_task&pm_status=duplicate">duplicate</a></li>
-				<li><a href="<?php echo home_url(); ?>/?post_type=pm_task&pm_status=invalid">invalid</a></li>
-				<li><a href="<?php echo home_url(); ?>/?post_type=pm_task&pm_status=question">question</a></li>
-				<li><a href="<?php echo home_url(); ?>/?post_type=pm_task&pm_status=wontfix">wontfix</a></li>
-			</ul>
-		
 		</div><!-- .well -->
 		
 	</div><!-- #task-organization.span3 -->
@@ -65,13 +76,14 @@ get_header(); // Loads the header.php template. ?>
 		
 			<div class="entry-content">
 							
-				<table class="table table-striped table-bordered">
+				<table class="table table-striped table-compressed">
 					
 					<thead>
 						<tr>
 							<th>Title</th>
 							<th>Status</th>
 							<th>Priority</th>
+							<th>Labels</th>
 							<th>Assigned To</th>
 							<th>Created</th>
 							<th>Last Updated</th>
@@ -89,6 +101,9 @@ get_header(); // Loads the header.php template. ?>
 							<td><?php echo get_the_term_list( $post->ID, 'pm_status', '<span class="label task-status">', ', ', '</span>' ); ?></td>
 							
 							<td><?php echo get_the_term_list( $post->ID, 'pm_priority', '<span class="task-priority">', ', ', '</span>' ); ?></td>
+							
+							<td><?php echo get_the_term_list( $post->ID, 'pm_label', '<span class="task-label">', ', ', '</span>' ); ?></td>
+							
 							<td>
 								<?php								
 								$assigned = get_post_meta( $post->ID, 'pm_task_assign_to' );

@@ -58,8 +58,8 @@ function pm_new_task_form( $allowNotLoggedInuser = 'yes' ) {
 			$output .= '</select></div></div>';
 			
 			// Submit
-			$output .= '<div class="form-actions">';
-			$output .= '<a class="btn btn-primary" onclick="pmaddpost(pmtitle.value,pmcontents.value,pmcategorycheck,pmstatuscheck,pmprioritycheck,pmassignto);">Create Task</a>';
+			$output .= '<div class="form-actions">';			
+			$output .= '<button type="button" data-loading-text="Loading..." class="btn btn-primary" onclick="pmaddpost(pmtitle.value,pmcontents.value,pmcategorycheck,pmstatuscheck,pmprioritycheck,pmassignto);">Create Task</button>';
 			$output .= '</div>';
 			
 		$output .= '</div>';

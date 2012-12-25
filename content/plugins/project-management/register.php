@@ -107,9 +107,44 @@ function pm_register_taxonomies() {
         ),
         'query_var' => true
     );
-		
+
+    $label_labels = array( 
+        'name' => _x( 'Labels', 'pm_label' ),
+        'singular_name' => _x( 'Label', 'pm_label' ),
+        'search_items' => _x( 'Search Labels', 'pm_label' ),
+        'popular_items' => _x( 'Popular Labels', 'pm_label' ),
+        'all_items' => _x( 'All Labels', 'pm_label' ),
+        'parent_item' => _x( 'Parent Label', 'pm_label' ),
+        'parent_item_colon' => _x( 'Parent Label:', 'pm_label' ),
+        'edit_item' => _x( 'Edit Label', 'pm_label' ),
+        'update_item' => _x( 'Update Label', 'pm_label' ),
+        'add_new_item' => _x( 'Add New Label', 'pm_label' ),
+        'new_item_name' => _x( 'New Label', 'pm_label' ),
+        'separate_items_with_commas' => _x( 'Separate labels with commas', 'pm_label' ),
+        'add_or_remove_items' => _x( 'Add or remove labels', 'pm_label' ),
+        'choose_from_most_used' => _x( 'Choose from the most used labels', 'pm_label' ),
+        'menu_name' => _x( 'Labels', 'pm_label' ),
+    );
+
+    $label_args = array( 
+        'labels' => $label_labels,
+        'public' => true,
+        'show_in_nav_menus' => true,
+        'show_ui' => true,
+        'show_tagcloud' => true,
+        'hierarchical' => true,
+        'rewrite' => array( 
+            'slug' => 'label', 
+            'with_front' => true,
+            'hierarchical' => true
+        ),
+        'query_var' => true
+    );
+			
 	register_taxonomy( 'pm_status', array('pm_task'), $status_args );
 	register_taxonomy( 'pm_priority', array('pm_task'), $priority_args );
+	register_taxonomy( 'pm_label', array('pm_task'), $label_args );
+
 }
 
 register_sidebar(array(
