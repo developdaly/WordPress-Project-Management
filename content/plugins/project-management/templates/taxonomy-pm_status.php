@@ -8,13 +8,14 @@
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  * @package WordPress
+ * @subpackage Twenty_Eleven
  * @since Twenty Eleven 1.0
  */
 
 get_header(); // Loads the header.php template. ?>
 
 	<?php do_atomic( 'before_content' ); // marketing_before_content ?>
-		
+	
 	<div id="task-organization" class="span3">
 		
 		<div class="well">
@@ -53,7 +54,7 @@ get_header(); // Loads the header.php template. ?>
 		
 	</div><!-- #task-organization.span3 -->
 
-	<section id="content" role="main" class="span9">
+	<section id="content" role="main" class="span6">
 
 		<?php do_atomic( 'open_content' ); // marketing_open_content ?>
 

@@ -33,7 +33,7 @@ function pm_task_sidebars( $sidebars_widgets ) {
 get_header(); // Loads the header.php template. ?>
 
 	<?php do_atomic( 'before_content' ); // marketing_before_content ?>
-
+	
 	<section id="content" role="main" class="span9">
 
 		<?php do_atomic( 'open_content' ); // marketing_open_content ?>

@@ -9,7 +9,7 @@
  * @subpackage Template
  */
 
-if ( 'pm_task' == get_post_type() ) : ?>
+is_singular(array( 'pm_task' )) ?>
 
 <aside id="sidebar-task" class="span3">
 	
@@ -17,7 +17,7 @@ if ( 'pm_task' == get_post_type() ) : ?>
 															
 		<ul class="task-meta">
 			
-			<li><?php echo get_the_term_list( $post->ID, 'pm_people', '<strong>', ', ', '</strong>' ); ?><?php echo apply_atomic_shortcode( 'byline', '' . __( ' by [entry-author]', hybrid_get_parent_textdomain() ) .'' ); ?></li>
+			<li><?php echo apply_atomic_shortcode( 'byline', '' . __( ' by [entry-author]', hybrid_get_parent_textdomain() ) .'' ); ?></li>
 			<li><strong><?php echo apply_atomic_shortcode( 'byline', '' . __( 'Created on [entry-published]', hybrid_get_parent_textdomain() ) .'' ); ?></strong></li>	
 			<li><?php echo get_the_term_list( $post->ID, 'pm_priority', '<strong>Priority: ', ', ', '</strong>' ); ?></li>																
 			<?php

@@ -1,71 +1,47 @@
 jQuery(document).ready(function($) {
 	'use strict';
-
-	// Get the browser height and width
-	var windowHeight, windowWidth;
-	windowHeight = $(window).height();
-    windowWidth = $(window).width();
-
-	// Show the sidebar on click
-	$('.show-deck').click(function () {
-		$('body').addClass('sidebar-active');
-		$('#sidebar').animate({
-			marginLeft : '0px'
-		}, 'fast');
-		$('#main-container').animate({
-			marginLeft : '280px'
-		}, 'fast');
-		$(this).hide();
-		$('.hide-deck').show();
-	});
 	
-	// Hide the sidebar on click
-	$('.hide-deck').click(function () {
-		$('body').removeClass('sidebar-active');
-		$('#sidebar').animate({
-			marginLeft : '-280px'
-		}, 'fast');
-		$('#main-container').animate({
-			marginLeft : '0px'
-		}, 'fast');
-		$(this).hide();
-		$('.show-deck').show();
+	// Establish Variables
+	var
+		History = window.History, // Note: Using a capital H instead of a lower h
+		State = History.getState(),
+		$log = $('#log');
+	
+	// If the link goes to somewhere else within the same domain, trigger the pushstate
+	$('#task-organization a').on('click', function(e) {
+		e.preventDefault();
+		var path = $(this).attr('href');
+		var title = $(this).text();
+		History.pushState('ajax',title,path);
 	});
 
-    //  Foundation Reveal modal
-	$('#open-modal').click(function() {
-		$('#search-modal').reveal({
-			dismissModalClass: 'close-modal'
+	// Bind to state change
+	// When the statechange happens, load the appropriate url via ajax
+	History.Adapter.bind(window,'statechange',function() { // Note: Using statechange instead of popstate
+		load_site_ajax();
+	});
+	// Load Ajax
+	function load_site_ajax() {
+		State = History.getState(); // Note: Using History.getState() instead of event.state
+		// History.log('statechange:', State.data, State.title, State.url);
+		console.log(event);
+		$("#content").prepend('<div id="ajax-loader"><h4>Loading...</h4></div>');
+		$("#ajax-loader").fadeIn();
+		$('#status').fadeTo(200,0);
+		$('#content').fadeTo(200,.3);
+		$("#main .row-fluid").load(State.url + ' #task-organization, #content', function(data) {
+			console.log(event);
+
+			/* After the content loads you can make additional callbacks*/
+			$('#status').text('Ajax loaded: ' + State.url);
+			$('#status').fadeTo(200,1);
+			$('#content').fadeTo(200,1);
+			
+			// Updates the menu
+			var request = $(data);
+			$('#task-organization').replaceWith($('#task-organization', request));
+			
 		});
-	});
-
-	/*
-	 * If the browser is less than 767 wide (our tablet breaking point)
-	 * then hide the sidebar and make it inactive
-	 */
-	if (windowWidth < 767) {
-		$('body').removeClass('sidebar-active');
-		$('#sidebar-primary').animate({
-			marginLeft : '-280px'
-		}, 'fast');
-		$('#content').animate({
-			marginLeft : '0px'
-		}, 'fast');
-		$('.hide-deck').hide();
-		$('.show-deck').show();
 	}
-
-});
-
-/*
- * We're detecting whenever the browser changes sizes
- * and adjusting page elements dynamically/on-the-fly
- */
-jQuery(window).ready(function($) {
-	'use strict';
-    var windowHeight, windowWidth;
-    windowHeight = $(window).height();
-    windowWidth = $(window).width();
-	$('#sidebar-primary').css('height', windowHeight);
-	$('#sidebar-task').css('height', windowHeight);
+	
 });

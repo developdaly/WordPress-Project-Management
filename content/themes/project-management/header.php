@@ -56,13 +56,13 @@
 		<?php
 		if ( current_theme_supports( 'breadcrumb-trail' ) ):
 			echo '<div class="breadcrumb">';
-			breadcrumb_trail( array( 'before' => __( 'You are here:', hybrid_get_parent_textdomain() ), 'front_page' => false ) );
+			breadcrumb_trail( array( 'before' => __( '<code id="status"></code>You are here:', hybrid_get_parent_textdomain() ), 'front_page' => false ) );
 			echo '</div>';
 		endif;
 		?>
-			
-		<div id="main"></div>
-			
+	
+		<div id="main">
+						
 			<div class="row-fluid">
-
-			<?php do_atomic( 'open_main' ); // marketing_open_main ?>
+			
+			<?php echo get_current_template(); do_atomic( 'open_main' ); // marketing_open_main ?>

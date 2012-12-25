@@ -17,11 +17,6 @@ body.logged-in {
 .logged-in .navbar-fixed-top {
 	top: 28px;
 }
-.container-fluid {
-	margin: 0;
-	padding: 0;
-}
-
 .row-fluid .navbar-inner {
 	padding: 0 20px;
 }

@@ -90,6 +90,9 @@ function marekting_load_files() {
 	
     wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'js/bootstrap.min.js', array(), $theme->version, false );
+	wp_deregister_script('historyjs');
+	wp_register_script( 'historyjs', get_bloginfo( 'stylesheet_directory' ) . '/js/jquery.history.js', array( 'jquery' ), '1.7.1' );
+	wp_enqueue_script( 'historyjs' );
 	wp_enqueue_script( 'app', trailingslashit ( get_template_directory_uri() ) .'js/app.js', array( 'jquery' ), $theme->version, false );
 
 }
@@ -324,4 +327,26 @@ if ( ! function_exists( 'bootstrap_setup' ) ):
 	}
 
 endif;
-?>
+
+
+
+
+
+
+
+
+add_filter( 'template_include', 'var_template_include', 1000 );
+function var_template_include( $t ){
+    $GLOBALS['current_theme_template'] = basename($t);
+    return $t;
+}
+
+function get_current_template( $echo = false ) {
+    if( !isset( $GLOBALS['current_theme_template'] ) )
+        return false;
+    if( $echo )
+        echo $GLOBALS['current_theme_template'];
+    else
+        return $GLOBALS['current_theme_template'];
+}
+

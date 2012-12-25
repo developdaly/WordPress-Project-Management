@@ -57,7 +57,7 @@ if ( post_password_required() || ( !have_comments() && !comments_open() && !ping
 			<?php endif; ?>
 
 		</div><!-- #comments -->
-		<?php comment_form(); // Loads the comment form. ?>
+		<?php comment_form( array( 'fields' => '' ) ); // Loads the comment form. ?>
 
 	</div><!-- .comments-wrap -->
 

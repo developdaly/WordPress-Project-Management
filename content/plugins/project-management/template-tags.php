@@ -91,6 +91,10 @@ function pm_templates() {
         include ( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/templates/archive-pm_task.php');
         exit;
     }
+    if ( is_tax( 'pm_status' ) &! locate_template( 'taxonomy-pm_status.php' ) ) {
+        include ( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/templates/taxonomy-pm_status.php');
+        exit;
+    }
     if ( ( 'pm_task' == get_post_type() ) &! locate_template( 'pm_task.php' ) ) {
         include ( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/templates/pm_task.php');
         exit;
