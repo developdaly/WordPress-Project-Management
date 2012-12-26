@@ -74,23 +74,23 @@ get_header(); // Loads the header.php template. ?>
 		
 			<div class="entry-content">
 
-				<ul>
+				<div class="btn-group pull-right">
 					<?php if( ( get_query_var( 'order' ) == 'DESC' ) && ( get_query_var( 'orderby' ) == 'date' ) ): ?>
-						<li><a href="<?php echo add_query_arg( array( 'orderby' => 'date', 'order' => 'ASC' ) ); ?>">Submitted <small>&#x25B2;</small></a></li>
+						<a class="btn btn-mini" href="<?php echo add_query_arg( array( 'orderby' => 'date', 'order' => 'ASC' ) ); ?>">Submitted <span class="caret"></span></a>
 					<?php elseif( ( get_query_var( 'order' ) == 'ASC' ) && ( get_query_var( 'orderby' ) == 'date' ) ): ?>
-						<li><a href="<?php echo add_query_arg( array( 'orderby' => 'date', 'order' => 'DESC' ) ); ?>">Submitted <small>&#x25BC;</small></a></li>
+						<a class="btn btn-mini dropup" href="<?php echo add_query_arg( array( 'orderby' => 'date', 'order' => 'DESC' ) ); ?>">Submitted <span class="caret"></span></a>
 					<?php else: ?>
-						<li><a href="<?php echo add_query_arg( array( 'orderby' => 'date', 'order' => 'DESC' ) ); ?>">Submitted</a></li>
+						<a class="btn btn-mini" href="<?php echo add_query_arg( array( 'orderby' => 'date', 'order' => 'DESC' ) ); ?>">Submitted</a>
 					<?php endif; ?>
-
+					
 					<?php if( ( get_query_var( 'order' ) == 'DESC' ) && ( get_query_var( 'orderby' ) == 'modified' ) ): ?>
-						<li><a href="<?php echo add_query_arg( array( 'orderby' => 'modified', 'order' => 'ASC' ) ); ?>">Updated <small>&#x25B2;</small></a></li>
+						<a class="btn btn-mini" href="<?php echo add_query_arg( array( 'orderby' => 'modified', 'order' => 'ASC' ) ); ?>">Updated <span class="caret"></span></a>
 					<?php elseif( ( get_query_var( 'order' ) == 'ASC' ) && ( get_query_var( 'orderby' ) == 'modified' ) ): ?>
-						<li><a href="<?php echo add_query_arg( array( 'orderby' => 'modified', 'order' => 'DESC' ) ); ?>">Updated <small>&#x25BC;</small></a></li>
+						<a class="btn btn-mini dropup" href="<?php echo add_query_arg( array( 'orderby' => 'modified', 'order' => 'DESC' ) ); ?>">Updated <span class="caret"></span></a>
 					<?php else: ?>
-						<li><a href="<?php echo add_query_arg( array( 'orderby' => 'modified', 'order' => 'DESC' ) ); ?>">Updated</a></li>
+						<a class="btn btn-mini" href="<?php echo add_query_arg( array( 'orderby' => 'modified', 'order' => 'DESC' ) ); ?>">Updated</a>
 					<?php endif; ?>
-				</ul>
+				</div>
 				
 				<table id="table-tasks" class="table table-striped">
 					
@@ -104,7 +104,7 @@ get_header(); // Loads the header.php template. ?>
 							
 							<td>
 								<strong><a href="<?php the_permalink(); ?>"><?php the_title_attribute(); ?></a></strong><br>
-								<?php echo apply_atomic_shortcode( 'byline', '<div class="byline">' . __( 'by [entry-author] on [entry-published]', hybrid_get_parent_textdomain() ) . '</div>' ); ?>
+								<small><?php echo apply_atomic_shortcode( 'byline', '<div class="byline muted">' . __( 'by [entry-author] on [entry-published]', hybrid_get_parent_textdomain() ) . '</div>' ); ?></small>
 							</td>							
 							
 							<td><?php echo get_the_term_list( $post->ID, 'pm_priority', '<span class="task-priority">', ', ', '</span>' ); ?></td>

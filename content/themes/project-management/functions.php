@@ -78,13 +78,14 @@ function marketing_theme_setup() {
  */
 function marekting_load_files() {
 	$theme  = wp_get_theme();
-
-	$swatch = hybrid_get_setting( 'pm_theme_swatch' );
-	if ( $swatch ) {
-		wp_enqueue_style( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'swatches/'. $swatch, '', $theme->version );
-	} else {
-		wp_enqueue_style( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'swatches/bootstrap.min.css', '', $theme->version );
-	}
+	
+	wp_enqueue_style( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'css/less/bootstrap.less', '', $theme->version );
+	//$swatch = hybrid_get_setting( 'pm_theme_swatch' );
+	//if ( $swatch ) {
+	//	wp_enqueue_style( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'swatches/'. $swatch, '', $theme->version );
+	//} else {
+	//	wp_enqueue_style( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'swatches/bootstrap.min.css', '', $theme->version );
+	//}
 		
 	wp_enqueue_style( 'style', trailingslashit ( get_template_directory_uri() ) .'style.css', array(), $theme->version );
 	
