@@ -349,3 +349,15 @@ function get_current_template( $echo = false ) {
     else
         return $GLOBALS['current_theme_template'];
 }
+
+// add category nicenames in body and post class
+function category_id_class($classes) {
+    global $post;
+	foreach( ( get_the_category( $post->ID ) ) as $category )
+        $classes[] = $category->category_nicename;
+	foreach( ( get_the_terms( $post->ID, 'pm_status' ) ) as $term )
+		$classes[] = $term->slug;
+        return $classes;
+}
+add_filter('post_class', 'category_id_class');
+add_filter('body_class', 'category_id_class');

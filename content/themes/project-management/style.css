@@ -12,7 +12,7 @@ body {
 	font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
 body.admin-bar {
-	margin-top: 40px;
+	margin-top: 60px;
 }
 .admin-bar .navbar-fixed-top {
 	top: 28px;
@@ -28,7 +28,7 @@ body.admin-bar {
 }
 
 #content {
-	padding: 20px 0 20px 20px;
+	padding: 0 0 20px 20px;
 }
 
 .navbar-inner {
@@ -59,4 +59,28 @@ body.admin-bar {
 	padding: 0 !important;
 	margin: 10px 15px 10px;
 	text-indent: -9999px;
+}
+
+.pm_task .label {
+	display: block;
+	width: 12px;
+	text-indent: -9999px;
+}
+.pm_task.new .label {
+	background: #468847;
+}
+.pm_task.in-progress .label {
+	background: #3A87AD;
+}
+.pm_task.needs-review .label {
+	background: #F89406;
+}
+.pm_task.needs-revision .label {
+	background: #B94A48;
+}
+.pm_task.complete .label {
+	background: #333;
+}
+.pm_task.accepted .label {
+	background: #eee;
 }
