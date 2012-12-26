@@ -18,8 +18,14 @@ if ( has_nav_menu( 'secondary' ) ) : ?>
 
 			<?php do_atomic( 'open_menu_secondary' ); // marketing_open_menu_secondary ?>
 
-			<?php wp_nav_menu( array( 'theme_location' => 'secondary', 'container_class' => 'menu', 'menu_class' => '', 'menu_id' => 'menu-secondary-items', 'fallback_cb' => '' ) ); ?>
-
+			<?php wp_nav_menu( array(
+				'theme_location' => 'secondary',
+				'depth'	=> 0,
+				'container'	=> false,
+				'menu_class'	=> 'nav pull-right',
+				'walker'	=> new Bootstrap_Walker_Nav_Menu() ) );
+			?>			
+			
 			<?php do_atomic( 'close_menu_secondary' ); // marketing_close_menu_secondary ?>
 
 		</div>

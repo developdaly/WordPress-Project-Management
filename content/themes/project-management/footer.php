@@ -15,7 +15,7 @@
 
 			<?php get_sidebar( 'secondary' ); // Loads the sidebar-secondary.php template. ?>
 			
-			<?php get_sidebar( 'pm_task' ); // Loads the sidebar-after-singular.php template. ?>
+			<?php if( is_singular( array( 'pm_task' ) ) ) get_sidebar( 'pm_task' ); // Loads the sidebar-after-singular.php template. ?>
 
 			<?php do_atomic( 'close_main' ); // marketing_close_main ?>
 			

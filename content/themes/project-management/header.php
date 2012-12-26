@@ -46,9 +46,23 @@
 <body class="<?php hybrid_body_class(); ?>">
 	
 	<?php do_atomic( 'open_body' ); // marketing_open_body ?>
-	
-	<?php get_template_part( 'menu', 'primary' ); // Loads the menu-primary.php template. ?>
 
+	<div class="navbar navbar-fixed-top row-fluid">
+		
+		<div class="navbar-inner span12">
+				
+			<?php get_template_part( 'menu', 'primary' ); // Loads the menu-primary.php template. ?>
+	
+			<form method="get" class="navbar-form pull-left" action="<?php echo trailingslashit( home_url() ); ?>">
+				<input class="search-query" type="text" name="s" placeholder="Search this site..." />
+			</form><!-- .navbar-form -->
+
+			<?php get_template_part( 'menu', 'secondary' ); // Loads the menu-secondary.php template. ?>
+		
+		</div><!-- .navbar-inner -->
+		
+	</div><!-- .navbar -->
+	
 	<div id="container" class="container-fluid">
 
 		<?php do_atomic( 'before_main' ); // marketing_before_main ?>
@@ -65,4 +79,4 @@
 						
 			<div class="row-fluid">
 			
-			<?php echo get_current_template(); do_atomic( 'open_main' ); // marketing_open_main ?>
+			<?php do_atomic( 'open_main' ); // marketing_open_main ?>

@@ -48,7 +48,7 @@ function marketing_theme_setup() {
 	add_theme_support( 'dev-stylesheet' );
 	add_theme_support( 'loop-pagination' );
 	add_theme_support( 'get-the-image' );
-	add_theme_support( 'breadcrumb-trail' );
+	//add_theme_support( 'breadcrumb-trail' );
 	add_theme_support( 'cleaner-gallery' );
 	
 	/* Adds custom stylesheet to the TinyMCE editor. */
@@ -349,4 +349,3 @@ function get_current_template( $echo = false ) {
     else
         return $GLOBALS['current_theme_template'];
 }
-

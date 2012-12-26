@@ -11,10 +11,10 @@
 body {
 	font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
-body.logged-in {
+body.admin-bar {
 	margin-top: 40px;
 }
-.logged-in .navbar-fixed-top {
+.admin-bar .navbar-fixed-top {
 	top: 28px;
 }
 .row-fluid .navbar-inner {
@@ -29,4 +29,34 @@ body.logged-in {
 
 #content {
 	padding: 20px 0 20px 20px;
+}
+
+.navbar-inner {
+	background: #fff;
+}
+
+.dropdown-menu {
+	left: -50%;
+}
+
+.navbar .nav > li > .dropdown-menu:before {
+  left: 75px;
+}
+.navbar .nav > li > .dropdown-menu:after {
+  left: 76px;
+}
+
+.menu-item-account > a {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	margin-top: 1px;
+	line-height: 14px;
+	vertical-align: text-top;
+	background-image: url("images/glyphicons-halflings.png");
+	background-position: -432px 0;
+	background-repeat: no-repeat;
+	padding: 0 !important;
+	margin: 10px 15px 10px;
+	text-indent: -9999px;
 }

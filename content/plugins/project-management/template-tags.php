@@ -99,4 +99,10 @@ function pm_templates() {
         include ( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/templates/pm_task.php');
         exit;
     }
+
+    if ( is_singular( array( 'pm_task' ) ) &! locate_template( 'sidebar-pm_task.php' ) ) {
+        include ( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/templates/sidebar-pm_task.php');
+        exit;
+    }
+	
 }

@@ -14,30 +14,19 @@ if ( has_nav_menu( 'primary' ) ) : ?>
 
 	<div id="menu-primary" class="menu-container">
 
-		<div class="navbar navbar-fixed-top row-fluid">
-			<div class="navbar-inner span12">
+		<?php do_atomic( 'open_menu_primary' ); // marketing_open_menu_primary ?>
 
-				<?php do_atomic( 'open_menu_primary' ); // marketing_open_menu_primary ?>
-	
-				<span class="brand"><?php hybrid_site_title(); ?></span>
-				
-				<?php wp_nav_menu( array(
-					'theme_location' => 'primary',
-					'depth'	=> 0,
-					'container'	=> false,
-					'menu_class'	=> 'nav',
-					'walker'	=> new Bootstrap_Walker_Nav_Menu() ) );
-				?>
-	
-				<form method="get" class="navbar-form pull-right" action="<?php echo trailingslashit( home_url() ); ?>">
-					<input class="search-query" type="text" name="s" placeholder="Search this site..." />
-				</form><!-- .navbar-form -->
-								
-				<?php do_atomic( 'close_menu_primary' ); // marketing_close_menu_primary ?>
-
-			</div>
-			
-		</div>
+		<span class="brand"><?php hybrid_site_title(); ?></span>
+		
+		<?php wp_nav_menu( array(
+			'theme_location' => 'primary',
+			'depth'	=> 0,
+			'container'	=> false,
+			'menu_class'	=> 'nav',
+			'walker'	=> new Bootstrap_Walker_Nav_Menu() ) );
+		?>
+						
+		<?php do_atomic( 'close_menu_primary' ); // marketing_close_menu_primary ?>
 
 	</div><!-- #menu-primary .menu-container -->
 
