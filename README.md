@@ -1,6 +1,8 @@
 WordPress Project Management
 ============================
 
+[![Build Status](https://travis-ci.org/developdaly/WordPress-Project-Management.png)](https://travis-ci.org/developdaly/WordPress-Project-Management)
+
 A theme and plugin pair to turn [WordPress][wp] into your project management solution.
 
 [wp]: http://wordpress.org/
