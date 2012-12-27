@@ -14,7 +14,7 @@ function pm_comment_before_fields() {
 		<div class="controls">
 		<?php
 			// Get the statuses
-			$statuses = get_the_terms( $post->ID, 'pm_statuses' );
+			$statuses = get_the_terms( $post->ID, 'pm_status' );
 				
 			if ( $statuses && ! is_wp_error( $statuses ) ) :
 				$current_status = array();
@@ -24,7 +24,7 @@ function pm_comment_before_fields() {
 				$current_status = join( ", ", $current_status );
 			endif;
 		
-			$statuses = get_terms( 'pm_statuses', array( 'hide_empty' => 0, 'orderby' => 'slug' ) );
+			$statuses = get_terms( 'pm_status', array( 'hide_empty' => 0, 'orderby' => 'slug' ) );
 			if ( $statuses && ! is_wp_error( $statuses ) ) :
 				
 				foreach ( $statuses as $status ) {
@@ -33,7 +33,7 @@ function pm_comment_before_fields() {
 				}
 				?>
 			      <label class="radio inline <?php echo $status->slug ?>">
-			        <input type="radio" id="pm_status_<?php echo $status->term_id ?>" name="pm_statuses" value="<?php echo $status->term_id ?>"<?php echo $selected; ?>> <?php echo $status->name ?> <i class="icon-arrow-right"></i>
+			        <input type="radio" id="pm_status_<?php echo $status->term_id ?>" name="pm_status" value="<?php echo $status->term_id ?>"<?php echo $selected; ?>> <?php echo $status->name ?> <i class="icon-arrow-right"></i>
 			      </label>
 			    <?php
 			    $selected = '';
@@ -80,31 +80,28 @@ function pm_comment_before_fields() {
 		<label class="control-label" for="pm_people">Assigned to</label>
 		<div class="controls">
 		<?php
-			$people = get_the_terms( $post->ID, 'pm_people' );
-			if ( $people && ! is_wp_error( $people ) ) :
+
+			// Get the user assigned to the task
+			$assigned = get_post_meta( $post->ID, 'pm_task_assign_to', true );
+			
+			// Get all registered users
+			$users = get_users();
+			if ( $users && ! is_wp_error( $users ) ) :
 				
-				$selected_people = array();
-				$exclude_people = array();
-			
-				foreach ( $people as $person ) {
-					$selected_people[] = $person->term_id;
+				echo '<select name="pm_task_assign_to" class="span12">';
+
+				foreach ( $users as $user ) {
+					if( $assigned == $user->ID )
+						$selected = ' selected="selected"';
+					
+					echo  '<option id="pm_task_assign_to_'. $user->ID .'" name="pm_task_assign_to" value="'. $user->ID .'" '. $selected .'>'. $user->display_name .'</option>';
+					$selected = '';
 				}
-										
-				$selected_people = join( ", ", $selected_people );
-			
+				
+				echo '</select>';
+
 			endif;
 
-			$people_args = array(
-				'taxonomy'		=>'pm_people',
-				'hide_empty'	=> 0,
-				'orderby'		=> 'name',
-				'name'			=> 'pm_people[]',
-				'id'			=> 'pm_people',
-				'class'			=> 'span12',
-				'selected'		=> $selected_people
-			);
-
-			wp_dropdown_categories( $people_args );
 			?>
 		</div>
 	</div>
@@ -123,14 +120,14 @@ function pm_insert_comment( $comment_id ) {
     //users are allowed to choose category
     $post_category = $_POST['category'];
 
-    //users are allowed to choose people
-    $post_people = $_POST['pm_people'];			
+    //users are allowed to assign people
+    $post_assigned = $_POST['pm_task_assign_to'];
 
     //users are allowed to choose statuses
-    $post_statuses = $_POST['pm_statuses'];	
+    $post_statuses = $_POST['pm_status'];	
 	
 	// Get the statuses
-	$statuses = get_the_terms( $post->ID, 'pm_statuses' );
+	$statuses = get_the_terms( $post->ID, 'pm_status' );
 		
 	if ( $statuses && ! is_wp_error( $statuses ) ) :
 		
@@ -155,14 +152,14 @@ function pm_insert_comment( $comment_id ) {
 	// without attaching to a post)
 		
 	wp_set_post_terms( $post->ID, $post_category, 'category' );
-	wp_set_post_terms( $post->ID, $post_people, 'pm_people' );
-	wp_set_post_terms( $post->ID, $post_statuses, 'pm_statuses' );
+	wp_set_post_terms( $post->ID, $post_statuses, 'pm_status' );
+	update_post_meta( $post->ID, 'pm_task_assign_to', $post_assigned );
 
-	$pm_status = get_term( $post_statuses, 'pm_statuses' );
+	$pm_status = get_term( $post_statuses, 'pm_status' );
 
 	// If the status has changed, add its meta
 	if ( $post_statuses != $comment_statuses_id )
-		update_comment_meta( $comment_id, 'pm_statuses', $pm_status->slug );
+		update_comment_meta( $comment_id, 'pm_status', $pm_status->slug );
 
 }
 

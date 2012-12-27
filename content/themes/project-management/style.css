@@ -9,7 +9,7 @@
  */
 
 body {
-	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	font-family: "Bitter", Arial, Helvetica, sans-serif;
 }
 body.admin-bar {
 	margin-top: 60px;
@@ -21,10 +21,19 @@ body.admin-bar {
 	padding: 0 20px;
 }
 
-.navbar .brand h1 {
-	font: inherit;
-	line-height: 20px;
+.navbar .brand {
+	padding: 10px;
+}
+
+#site-title {
 	margin: 0;
+}
+#site-title a {
+	background: url('images/logo.png') no-repeat;
+	display: block;
+	height: 24px;
+	text-indent: -9999px;
+	width: 24px;
 }
 
 #content {
@@ -83,4 +92,90 @@ body.admin-bar {
 }
 .pm_task.accepted .label {
 	background: #eee;
+}
+
+.task-header {
+	border-bottom: 1px dashed #eee;
+	margin: 0 0 20px;
+	padding: 0 0 20px;
+}
+
+/*
+ * Comments
+*******************************************************/
+.pm_task .comment {
+	clear: both;
+	list-style: none;
+	margin: 0 0 10px;
+}
+.pm_task .comment .avatar {
+	position: relative;
+	float: left;
+	border-radius: 3px;
+	max-width: 48px;
+}
+.pm_task .comment-meat:before {
+	content: "";
+	display: block;
+	height: 0;
+	width: 0;
+	border: 10px solid #EEE;
+	border-width: 10px 10px 10px 0;
+	border-color: transparent #EEE transparent transparent;
+	position: absolute;
+	left: -10px;
+	top: 15px
+}
+.pm_task .comment-meat {
+	position: relative;
+	margin-left: 60px;
+	padding: 3px;
+	background: #EEE;
+	border-radius: 3px;
+}
+.pm_task .comment-meat-inner {
+	min-height: 60px;
+	border: 1px solid #CACACA;
+	background-color: white;
+}
+.pm_task .comment-meta {
+	padding: 6px;
+	border-bottom: 1px solid #CCC;
+	background-color: #E1E1E1;
+	background-image: -moz-linear-gradient(#F8F8F8, #E1E1E1);
+	background-image: -webkit-linear-gradient(#F8F8F8, #E1E1E1);
+	background-image: linear-gradient(#F8F8F8, #E1E1E1);
+	background-repeat: repeat-x;
+	font-size: 12px;
+}
+.pm_task .comment-content {
+	padding: 10px 10px 0;
+	color: #333;
+	font-size: 12px;
+	background: #FBFBFB;
+}
+
+
+.progress-inditcator {
+	background: url('images/progress.png') 0 0 no-repeat;
+	height: 112px;
+	width: 112px;
+}
+.pm_task.new .progress-inditcator {
+	background-position: 0 0;
+}
+.pm_task.in-progress .progress-inditcator {
+	background-position: -112px 0;
+}
+.pm_task.needs-revision .progress-inditcator {
+	background-position: -226px 0;
+}
+.pm_task.needs-review .progress-inditcator {
+	background-position: -338px 0;
+}
+.pm_task.complete .progress-inditcator {
+	background-position: -453px 0;
+}
+.pm_task.accepted .progress-inditcator {
+	background-position: -562px 0;
 }

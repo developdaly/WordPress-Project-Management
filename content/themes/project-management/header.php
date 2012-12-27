@@ -32,10 +32,6 @@
 	
 	<?php wp_head(); // wp_head ?>
 	
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
-
-	<script type="text/javascript" src="//use.typekit.net/jtu5eap.js"></script>
-	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	<!-- IE Fix for HTML5 Tags -->
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>

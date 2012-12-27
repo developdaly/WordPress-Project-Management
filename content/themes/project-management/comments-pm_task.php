@@ -28,6 +28,8 @@ if ( post_password_required() || ( !have_comments() && !comments_open() && !ping
 
 				<?php do_atomic( 'before_comment_list' );// marketing_before_comment_list ?>
 
+				<h3>Comments and changes to this task</h3>
+				
 				<ol class="comment-list">
 					<?php wp_list_comments( hybrid_list_comments_args() ); ?>
 				</ol><!-- .comment-list -->

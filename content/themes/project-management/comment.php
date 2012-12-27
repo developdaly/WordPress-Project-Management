@@ -22,16 +22,24 @@
 			<?php do_atomic( 'open_comment' ); // marketing_open_comment ?>
 
 			<?php echo hybrid_avatar(); ?>
-
-			<?php echo apply_atomic_shortcode( 'comment_meta', '<div class="comment-meta">[comment-author] [comment-published] [comment-permalink before="| "] [comment-edit-link before="| "] [comment-reply-link before="| "]</div>' ); ?>
-
-			<div class="comment-content comment-text">
-				<?php if ( '0' == $comment->comment_approved ) : ?>
-					<?php echo apply_atomic_shortcode( 'comment_moderation', '<p class="alert moderation">' . __( 'Your comment is awaiting moderation.', hybrid_get_parent_textdomain() ) . '</p>' ); ?>
-				<?php endif; ?>
-
-				<?php comment_text( $comment->comment_ID ); ?>
-			</div><!-- .comment-content .comment-text -->
+			
+			<div class="comment-meat">
+				
+				<div class="comment-meat-inner">
+		
+					<?php echo apply_atomic_shortcode( 'comment_meta', '<div class="comment-meta">[comment-author] [comment-published] [comment-permalink before="| "] [comment-edit-link before="| "] [comment-reply-link before="| "]</div>' ); ?>
+		
+					<div class="comment-content comment-text">
+						<?php if ( '0' == $comment->comment_approved ) : ?>
+							<?php echo apply_atomic_shortcode( 'comment_moderation', '<p class="alert moderation">' . __( 'Your comment is awaiting moderation.', hybrid_get_parent_textdomain() ) . '</p>' ); ?>
+						<?php endif; ?>
+		
+						<?php comment_text( $comment->comment_ID ); ?>
+					</div><!-- .comment-content .comment-text -->
+				
+				</div><!-- .comment-meat-inner -->
+			
+			</div><!-- .comment-meat -->
 
 			<?php do_atomic( 'close_comment' ); // marketing_close_comment ?>
 
