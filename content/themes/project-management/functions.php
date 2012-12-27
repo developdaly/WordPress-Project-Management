@@ -87,7 +87,7 @@ function marekting_load_files() {
 	//	wp_enqueue_style( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'swatches/bootstrap.min.css', '', $theme->version );
 	//}
 		
-	wp_enqueue_style( 'lato', 'http://fonts.googleapis.com/css?family=Bitter', array(), $theme->version );
+	wp_enqueue_style( 'bitter', 'http://fonts.googleapis.com/css?family=Bitter', array(), $theme->version );
 	wp_enqueue_style( 'style', trailingslashit ( get_template_directory_uri() ) .'style.css', array(), $theme->version );
 	
     wp_enqueue_script( 'jquery' );
