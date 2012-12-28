@@ -13,7 +13,7 @@ if ( is_active_sidebar( 'secondary' ) ) : ?>
 
 	<?php do_atomic( 'before_sidebar_secondary' ); // marketing_before_sidebar_secondary ?>
 
-	<div id="sidebar-secondary" class="three columns">
+	<div id="sidebar-secondary" class="<?php echo pm_get_layout( 'sidebar' ); ?>">
 
 		<?php do_atomic( 'open_sidebar_secondary' ); // marketing_open_sidebar_secondary ?>
 

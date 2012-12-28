@@ -39,11 +39,6 @@ body.admin-bar {
 	width: 24px;
 }
 
-#content {
-	background: #fff;
-	box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-}
-
 .navbar-inner {
 	background: #fff;
 }
@@ -72,8 +67,4 @@ body.admin-bar {
 	padding: 0 !important;
 	margin: 10px 15px 10px;
 	text-indent: -9999px;
-}
-
-.loop-meta {
-	padding: 20px;
 }

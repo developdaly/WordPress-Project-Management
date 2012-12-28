@@ -386,3 +386,47 @@ function category_id_class($classes) {
 add_filter('post_class', 'category_id_class');
 add_filter('body_class', 'category_id_class');
 
+/**
+ * Examines the given ID and returns the appropirate Twitter Bootstrap span
+ * class.
+ *
+ * @since 0.1.0
+ */
+function pm_get_layout( $id = '' ) {
+	
+	$layout = theme_layouts_get_layout();
+
+	if ( !empty($id) ) {
+		if( $layout == 'layout-default' ) {
+			if( $id == 'content' )
+				$output = 'span9';
+			elseif( $id == 'sidebar' )
+				$output = 'span3';
+			else
+				return false;
+		} elseif( $layout == 'layout-1c' ) {
+			if( $id == 'content' )
+				$output = 'span12';
+			else
+				return false;
+		} elseif( $layout == 'layout-2c-l' || $layout == 'layout-2c-r' ) {
+			if( $id == 'content' )
+				$output = 'span9';
+			elseif( $id == 'sidebar' )
+				$output = 'span3';
+			else
+				return false;
+		} elseif( 'layout-3c-l' == $layout || 'layout-3c-r' == $layout || 'layout-3c-c' == $layout ) {
+			if( $id == 'content' )
+				$output = 'span6';
+			elseif( $id == 'sidebar' )
+				$output = 'span3';
+			else
+				return false;
+		} else {
+			return false;
+		}
+	}
+	
+	return $output;
+}

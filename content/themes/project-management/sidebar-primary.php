@@ -13,7 +13,7 @@ if ( is_active_sidebar( 'primary' ) ) : ?>
 
 	<?php do_atomic( 'before_sidebar_primary' ); // marketing_before_sidebar_primary ?>
 
-	<div id="sidebar-primary" class="span3">
+	<div id="sidebar-primary" class="<?php echo pm_get_layout( 'sidebar' ); ?>">
 		
 		<div class="well">
 

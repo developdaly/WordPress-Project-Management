@@ -1,3 +1,7 @@
+.singular-pm_task #content {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
 .singular .pm_task {
   background: #fff;
   border-bottom: 4px solid #ddd;
@@ -117,10 +121,10 @@
     color: #fff;
   }
 }
-.pm_task.a-low      .label-priority a[rel="tag"] { background: @priorityBackgroundLow; }
-.pm_task.b-normal   .label-priority a[rel="tag"] { background: @priorityBackgroundNormal; }
-.pm_task.c-high     .label-priority a[rel="tag"] { background: @priorityBackgroundHigh; }
-.pm_task.d-critical .label-priority a[rel="tag"] { background: @priorityBackgroundCritical; }
+.pm_task.a-low      .label-priority a[rel="tag"] { .buttonBackground(@priorityBackgroundLow, darken( @priorityBackgroundLow, 15% ) ); }
+.pm_task.b-normal   .label-priority a[rel="tag"] { .buttonBackground(@priorityBackgroundNormal, darken( @priorityBackgroundNormal, 15% ) ); }
+.pm_task.c-high     .label-priority a[rel="tag"] { .buttonBackground(@priorityBackgroundHigh, darken( @priorityBackgroundHigh, 15% ) ); }
+.pm_task.d-critical .label-priority a[rel="tag"] { .buttonBackground(@priorityBackgroundCritical, darken( @priorityBackgroundCritical, 15% ) ); }
 
 .pm_task .byline {
   font: 11px/14px  Arial, Helvetica, Sans-serif;
@@ -142,9 +146,14 @@
  * Comments
 *******************************************************/
 #comments-template {
+  padding: 3px;
+  background: rgba(0,0,0,.05);
+  border-radius: 3px;
+}
+.comments-wrap {
+  border: 1px solid #CACACA;
   background: #fff;
-  border-bottom: 4px solid #ddd;
-  padding: 20px 40px;
+  padding: 20px 30px;
 }
 #comments-template h3 {
   color: #999;
