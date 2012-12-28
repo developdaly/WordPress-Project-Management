@@ -20,11 +20,21 @@ if ($_FILES) {
 get_header(); // Loads the header.php template. ?>
 
 	<?php do_atomic( 'before_content' ); // marketing_before_content ?>
-	
-	<section id="content" role="main" class="span9">
+
+	<div class="span12">
+		<?php $current_user = wp_get_current_user(); ?>
+		<div class="btn-group">
+			<a href="<?php echo home_url(); ?>/new-task/" class="btn btn-primary"><i class="icon-plus icon-white"></i> New task</a>
+			<a href="/tasks" class="btn">My tasks</a></li>
+			<a href="/tasks" class="btn">Everyone's tasks</a></li>
+			<a href="<?php echo get_author_posts_url( $current_user->ID ); ?>" class="btn">Created by you</a></li>
+		</div>
+	</div>
+		
+	<section id="content" role="main" class="span6">
 
 		<?php do_atomic( 'open_content' ); // marketing_open_content ?>
-
+				
 		<div class="hfeed">
 			
 			<?php if ( have_posts() ) : ?>
@@ -33,12 +43,19 @@ get_header(); // Loads the header.php template. ?>
 
 					<?php do_atomic( 'before_entry' ); // marketing_before_entry ?>
 
-					<div id="post-<?php the_ID(); ?>" class="<?php hybrid_entry_class(); ?> <?php echo pm_task_classes(); ?>">
-
+					<div id="post-<?php the_ID(); ?>" class="<?php hybrid_entry_class(); ?>" data-spy="affix" data-offset-top="54">
+		
 						<?php do_atomic( 'open_entry' ); // marketing_open_entry ?>
 							
 						<div class="task-header">
-							
+
+							<?php if ( get_post_meta( get_the_ID(), 'pm_task_assign_to', true) ) :
+								$user_id = get_post_meta( get_the_ID(), 'pm_task_assign_to', true );
+								$user = get_userdata( $user_id );
+								if( $user )
+									echo get_avatar( $user->ID, 50, '', $user->display_name );
+							endif; ?>
+														
 							<?php 
 							$user_story = get_post_meta( $post->ID, 'pm_user_story', true );
 							$user_story_link = get_post_meta( $post->ID, 'pm_user_story_link', true );
@@ -46,14 +63,29 @@ get_header(); // Loads the header.php template. ?>
 							if( $user_story_link && $user_story ) echo '<a href="'. $user_story_link .'" class="user-story" target="_blank">';
 							if( $user_story ) echo $user_story;
 							if( $user_story_link && $user_story ) echo '</a>';
-							?>								
+							?>
 							
-							<!--<div class="progress-inditcator pull-left"></div>-->
-							<?php //echo get_the_term_list( $post->ID, 'pm_status', '<span class="task-status">', ', ', '</span>' ); ?>
 							<h1><?php echo the_title_attribute(); ?></h1>
-							<?php echo apply_atomic_shortcode( 'byline', '<p class="byline muted"><small>' . __( 'Created by [entry-author] | [entry-published]', hybrid_get_parent_textdomain() ) .'</small></p>' ); ?>
-							<?php echo get_the_term_list( $post->ID, 'pm_priority', '<p><strong class="label-priority">', ', ', ' Priority</strong></p>' ); ?>
-																	
+							
+							<p class="byline">
+								<?php
+								echo apply_atomic_shortcode( 'byline', '' . __( 'Created by [entry-author] | [entry-published]', hybrid_get_parent_textdomain() ) .'' );
+	
+								$args = array(
+									'post_id' => $post->ID,
+									'number' => '1'
+								);
+								$comments = get_comments($args);
+								foreach($comments as $comment) :
+									$date = $comment->comment_date;
+									echo( ' | Last modified by <span rel="tooltip" title="'. date("g:i a",strtotime( $date )) .' at '. date("F j, Y",strtotime( $date )) . '">' . $comment->comment_author . '</span>' );
+								endforeach;
+								?>
+							</p>
+														
+							<?php echo get_the_term_list( get_the_ID(), 'pm_priority', ' <span class="label-priority">', ', ', '</span>' ); ?>
+							<?php echo get_the_term_list( get_the_ID(), 'pm_status', '<span class="label-status">', ', ', '</span>' ); ?>
+
 						</div><!-- .task-header -->
 						
 						<div id="task-main">
@@ -66,8 +98,6 @@ get_header(); // Loads the header.php template. ?>
 								<?php $pm_file = get_post_meta( $post->ID, 'pm_file', true ); if ( $pm_file ) echo '<a href="'. $pm_file .'" class="btn">Download Attachment</a>'; ?>
 						
 							</div><!-- .entry-content -->
-							
-							<?php comments_template( '/comments-pm_task.php', true ); // Loads the comments.php template. ?>
 							
 						</div><!-- .span8 -->
 						
@@ -92,60 +122,11 @@ get_header(); // Loads the header.php template. ?>
 		<?php get_template_part( 'loop-nav' ); // Loads the loop-nav.php template. ?>
 
 	</section><!-- #content -->
+		
+	<aside id="sidebar-task" class="sidebar span6">
+		<?php comments_template( '/comments-pm_task.php', true ); // Loads the comments.php template. ?>
+	</div>
 	
-	<aside id="sidebar-task" class="span3">
-		
-		<div class="widget">
-																	
-		<ul class="task-meta">
-													
-			<?php
-			$args = array(
-				'post_id' => $post->ID,
-				'number' => '1'
-			);
-			$comments = get_comments($args);
-			if ( $comments ) echo '<li>';
-			foreach($comments as $comment) :
-				$date = $comment->comment_date;
-				echo( '<strong>Updated '. date("F j, Y",strtotime( $date )) . '</strong> at <strong>'. date("g:i a",strtotime( $date )) . '</strong><br />by ' . $comment->comment_author );
-			endforeach;
-			if ( $comments ) echo '</li>';
-			?>
-			<?php if (class_exists('wp_subscribe_reloaded')) { ?>
-			<li>
-				<strong>People to notify of updates...</strong>
-				<?php
-				$subscribers = $wp_subscribe_reloaded->get_subscriptions(array('post_id'), array('equals'), array($post->ID), 'dt', 'DESC', 0 );
-				
-				if ( $subscribers ) {
-					echo '<ul class="task-subscribers">';
-					foreach ( $subscribers as $subscriber ) {
-						echo '<li><a href="mailto:'. $subscriber->email .'">'. $subscriber->email .'</a></li>';
-					}
-					echo '</ul>';
-				}
-				
-				?>
-				<form action="" method="post" id="update_address_form" class="form-inline" onsubmit="if (this.srp.value == '' || this.sre.value == '') return false;">
-					<input type="text" size="30" name="sre" value="">
-					<input type="submit" class="subscribe-form-button" value="Add">
-					<input type="hidden" name="srp" value="<?php echo $post->ID; ?>">
-					<input type="hidden" name="srs" value="Y" />
-					<input type="hidden" name="sra" value="add">
-				</form>
-			</li>
-			<?php } ?>
-		</ul>
-																
-		<ul class="unstyled">
-			<li><a href="<?php echo bloginfo( 'url' ); ?>/tasks/"><i class="icon-arrow-left"></i> Back to all tasks</a></li>
-			<li><a href="<?php echo bloginfo( 'url' ); ?>/new-task/"><i class="icon-plus"></i> New Task</a></li>
-		</ul>
-		
-		</div>
-				
-	</aside>	
 	<?php do_atomic( 'after_content' ); // marketing_after_content ?>
 
 <?php get_footer(); // Loads the footer.php template. ?>

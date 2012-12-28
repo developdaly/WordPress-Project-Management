@@ -44,4 +44,7 @@ jQuery(document).ready(function($) {
 		});
 	}
 	
+	// Tooltips
+	$('[rel=tooltip]').tooltip();
+	
 });

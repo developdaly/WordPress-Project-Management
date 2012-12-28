@@ -115,9 +115,6 @@ function pm_addpost() {
 	// Success?
 	if( $post_id != 0  ) {		
 		$results = '<div class="alert alert-success">Task added successfully</div>';
-		echo '<pre>';
-		print_r( $_POST );
-		echo '</pre>';
 	} else {
 		$results = '<div class="alert alert-error">An error occured while adding your task</div>';
 	}

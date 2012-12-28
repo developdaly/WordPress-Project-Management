@@ -1,0 +1,212 @@
+.singular .pm_task {
+  background: #fff;
+  border-bottom: 4px solid #ddd;
+}
+.singular-pm_task .affix {
+  top: 68px;
+  width: 570px;
+}
+.singular .pm_task .entry-content {
+  padding: 30px 40px 10px;
+}
+
+/*
+ * Tasks List
+*******************************************************/
+#tasks-list .pm_task {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  box-shadow: inset 0 5px 5px rgba(0,0,0,.05);
+  clear: both;
+  padding: 15px;
+}
+#tasks-list .avatar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 25px;
+  border: 1px solid #DDD;
+  border-width: 0 0 1px 1px;
+  border-bottom-left-radius: 3px;
+}
+#tasks-list .entry-title {
+  font-size: 16px;
+  line-height: 21px;
+  margin: 0;
+}
+#tasks-list .byline {
+  color: #aaa;
+  a {
+    color: #aaa;
+  }
+}
+
+.task-controls {
+  background: #fff url('../images/closed_back.gif');
+  overflow: hidden;
+  border-top: 1px solid #EEE;
+  font: 11px/12px  Arial, Helvetica, Sans-serif;
+  padding: 3px 3px 0;
+  border-bottom: 1px solid #DDD;
+}
+.task-controls .btn {
+  border-bottom: none !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  vertical-align: bottom;
+}
+.task-controls .nav-tabs {
+  display: inline;
+  font-size: 10px;
+}
+.task-controls .nav-tabs > li > a {
+  padding: 0 6px;
+}
+
+/*
+ * Task Header
+*******************************************************/
+.task-header {
+  background: #fff;
+  border-bottom: 4px solid #ddd;
+  color: #f5f5f5;
+  padding: 20px 40px; 
+}    
+.pm_task.new            .task-header {
+  background-color: @statusBackgroundNew;
+  background-image: -moz-linear-gradient(top, lighten(@statusBackgroundNew, 5%), @statusBackgroundNew); // FF 3.6+
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(lighten(@statusBackgroundNew, 5%)), to(@statusBackgroundNew)); // Safari 4+, Chrome 2+
+  background-image: -webkit-linear-gradient(top, lighten(@statusBackgroundNew, 5%), @statusBackgroundNew); // Safari 5.1+, Chrome 10+
+  background-image: -o-linear-gradient(top, lighten(@statusBackgroundNew, 5%), @statusBackgroundNew); // Opera 11.10
+  background-image: linear-gradient(to bottom, lighten(@statusBackgroundNew, 5%), @statusBackgroundNew); // Standard, IE10
+  background-repeat: repeat-x;
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(lighten(@statusBackgroundNew, 5%)),argb(@statusBackgroundNew))); // IE9 and down
+}
+.pm_task.in-progress            .task-header {
+  background-color: @statusBackgroundInProgress;
+  background-image: -moz-linear-gradient(top, lighten(@statusBackgroundInProgress, 5%), @statusBackgroundInProgress); // FF 3.6+
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(lighten(@statusBackgroundInProgress, 5%)), to(@statusBackgroundInProgress)); // Safari 4+, Chrome 2+
+  background-image: -webkit-linear-gradient(top, lighten(@statusBackgroundInProgress, 5%), @statusBackgroundInProgress); // Safari 5.1+, Chrome 10+
+  background-image: -o-linear-gradient(top, lighten(@statusBackgroundInProgress, 5%), @statusBackgroundInProgress); // Opera 11.10
+  background-image: linear-gradient(to bottom, lighten(@statusBackgroundInProgress, 5%), @statusBackgroundInProgress); // Standard, IE10
+  background-repeat: repeat-x;
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(lighten(@statusBackgroundInProgress, 5%)),argb(@statusBackgroundInProgress))); // IE9 and down
+}
+.pm_task.needs-review   .task-header { background: @statusBackgroundNeedsReview; }
+.pm_task.needs-revision .task-header { background: @statusBackgroundNeedsRevision; }
+.pm_task.complete       .task-header { background: @statusBackgroundComplete; }
+.pm_task.accepted       .task-header { background: @statusBackgroundAccepted; }
+
+.task-header .avatar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, .5);
+  border-width: 0 0 3px 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.label-priority,
+.label-status {
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.label-priority{
+  a[rel="tag"] {
+    color: #fff;
+  }
+}
+.pm_task.a-low      .label-priority a[rel="tag"] { background: @priorityBackgroundLow; }
+.pm_task.b-normal   .label-priority a[rel="tag"] { background: @priorityBackgroundNormal; }
+.pm_task.c-high     .label-priority a[rel="tag"] { background: @priorityBackgroundHigh; }
+.pm_task.d-critical .label-priority a[rel="tag"] { background: @priorityBackgroundCritical; }
+
+.pm_task .byline {
+  font: 11px/14px  Arial, Helvetica, Sans-serif;
+}
+
+.singular .pm_task .byline {
+  color: rgba(255,255,255,.5);
+  a {
+    color: rgba(255,255,255,.5);
+    text-decoration: underline;
+  }
+  [rel~="tooltip"],
+  abbr {
+    border-bottom: 1px dotted rgba(255,255,255,.5);
+  }
+}
+
+/*
+ * Comments
+*******************************************************/
+#comments-template {
+  background: #fff;
+  border-bottom: 4px solid #ddd;
+  padding: 20px 40px;
+}
+#comments-template h3 {
+  color: #999;
+  font-size: 16px;
+  margin: 0;
+}
+#comments-template .log-in-out {
+  color: #999;
+  font-size: 12px;
+}
+.comment-list {
+  margin: 0;
+  padding: 0;
+}
+.singular-pm_task .comment {
+  clear: both;
+  list-style: none;
+  margin: 0 0 10px;
+}
+.singular-pm_task .comment .avatar {
+  position: relative;
+  float: left;
+  border-radius: 3px;
+  max-width: 48px;
+}
+.singular-pm_task .comment-meat:before {
+  content: "";
+  display: block;
+  height: 0;
+  width: 0;
+  border: 10px solid #EEE;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #EEE transparent transparent;
+  position: absolute;
+  left: -10px;
+  top: 15px
+}
+.singular-pm_task .comment-meat {
+  position: relative;
+  margin-left: 60px;
+  padding: 3px;
+  background: #EEE;
+  border-radius: 3px;
+}
+.singular-pm_task .comment-meat-inner {
+  min-height: 60px;
+  border: 1px solid #CACACA;
+  background-color: white;
+}
+.singular-pm_task .comment-meta {
+  padding: 6px;
+  border-bottom: 1px solid #CCC;
+  background-color: #E1E1E1;
+  background-image: -moz-linear-gradient(#F8F8F8, #E1E1E1);
+  background-image: -webkit-linear-gradient(#F8F8F8, #E1E1E1);
+  background-image: linear-gradient(#F8F8F8, #E1E1E1);
+  background-repeat: repeat-x;
+  font-size: 12px;
+}
+.singular-pm_task .comment-content {
+  padding: 10px 10px 0;
+  color: #333;
+  font-size: 12px;
+  background: #FBFBFB;
+}

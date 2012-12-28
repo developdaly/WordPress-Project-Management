@@ -15,7 +15,7 @@ get_header(); // Loads the header.php template. ?>
 
 	<?php do_atomic( 'before_content' ); // marketing_before_content ?>
 		
-	<div id="task-organization" class="span3">
+	<div id="task-organization" class="sidebar span3">
 
 		<p><a href="<?php echo home_url(); ?>/new-task/" class="btn btn-block">New task</a></p>
 	
@@ -73,51 +73,61 @@ get_header(); // Loads the header.php template. ?>
 			<?php if ( have_posts() ) : ?>
 		
 			<div class="entry-content">
-
-				<div class="btn-group pull-right">
-					<?php if( ( get_query_var( 'order' ) == 'DESC' ) && ( get_query_var( 'orderby' ) == 'date' ) ): ?>
-						<a class="btn btn-mini" href="<?php echo add_query_arg( array( 'orderby' => 'date', 'order' => 'ASC' ) ); ?>">Submitted <span class="caret"></span></a>
-					<?php elseif( ( get_query_var( 'order' ) == 'ASC' ) && ( get_query_var( 'orderby' ) == 'date' ) ): ?>
-						<a class="btn btn-mini dropup" href="<?php echo add_query_arg( array( 'orderby' => 'date', 'order' => 'DESC' ) ); ?>">Submitted <span class="caret"></span></a>
-					<?php else: ?>
-						<a class="btn btn-mini" href="<?php echo add_query_arg( array( 'orderby' => 'date', 'order' => 'DESC' ) ); ?>">Submitted</a>
-					<?php endif; ?>
-					
-					<?php if( ( get_query_var( 'order' ) == 'DESC' ) && ( get_query_var( 'orderby' ) == 'modified' ) ): ?>
-						<a class="btn btn-mini" href="<?php echo add_query_arg( array( 'orderby' => 'modified', 'order' => 'ASC' ) ); ?>">Updated <span class="caret"></span></a>
-					<?php elseif( ( get_query_var( 'order' ) == 'ASC' ) && ( get_query_var( 'orderby' ) == 'modified' ) ): ?>
-						<a class="btn btn-mini dropup" href="<?php echo add_query_arg( array( 'orderby' => 'modified', 'order' => 'DESC' ) ); ?>">Updated <span class="caret"></span></a>
-					<?php else: ?>
-						<a class="btn btn-mini" href="<?php echo add_query_arg( array( 'orderby' => 'modified', 'order' => 'DESC' ) ); ?>">Updated</a>
-					<?php endif; ?>
-				</div>
 				
-				<table id="table-tasks" class="table table-striped">
-					
-					<tbody>
-					
+				<div class="task-controls">
+	
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a href="#">Open Tasks</a>
+						</li>
+						<li>
+							<a href="#">Closed Tasks</a>
+						</li>
+					</ul>
+
+					<div class="btn-group pull-right">
+						<?php if( ( get_query_var( 'order' ) == 'DESC' ) && ( get_query_var( 'orderby' ) == 'date' ) ): ?>
+							<a class="btn btn-mini active" href="<?php echo add_query_arg( array( 'orderby' => 'date', 'order' => 'ASC' ) ); ?>">Submitted <span class="caret"></span></a>
+						<?php elseif( ( get_query_var( 'order' ) == 'ASC' ) && ( get_query_var( 'orderby' ) == 'date' ) ): ?>
+							<a class="btn btn-mini dropup active" href="<?php echo add_query_arg( array( 'orderby' => 'date', 'order' => 'DESC' ) ); ?>">Submitted <span class="caret"></span></a>
+						<?php else: ?>
+							<a class="btn btn-mini" href="<?php echo add_query_arg( array( 'orderby' => 'date', 'order' => 'DESC' ) ); ?>">Submitted</a>
+						<?php endif; ?>
+						
+						<?php if( ( get_query_var( 'order' ) == 'DESC' ) && ( get_query_var( 'orderby' ) == 'modified' ) ): ?>
+							<a class="btn btn-mini active" href="<?php echo add_query_arg( array( 'orderby' => 'modified', 'order' => 'ASC' ) ); ?>">Updated <span class="caret"></span></a>
+						<?php elseif( ( get_query_var( 'order' ) == 'ASC' ) && ( get_query_var( 'orderby' ) == 'modified' ) ): ?>
+							<a class="btn btn-mini dropup active" href="<?php echo add_query_arg( array( 'orderby' => 'modified', 'order' => 'DESC' ) ); ?>">Updated <span class="caret"></span></a>
+						<?php else: ?>
+							<a class="btn btn-mini" href="<?php echo add_query_arg( array( 'orderby' => 'modified', 'order' => 'DESC' ) ); ?>">Updated</a>
+						<?php endif; ?>
+					</div>
+				
+				</div><!-- .task-controls -->
+				
+				<div id="tasks-list">
+										
 					<?php while ( have_posts() ) : the_post(); ?>
 		
-						<tr id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+						<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-							<td><?php echo get_the_term_list( $post->ID, 'pm_status', '<span class="label task-status">', ', ', '</span>' ); ?></td>
+							<?php if ( get_post_meta( get_the_ID(), 'pm_task_assign_to', true) ) :
+								$user_id = get_post_meta( get_the_ID(), 'pm_task_assign_to', true );
+								$user = get_userdata( $user_id );
+								if( $user )
+									echo get_avatar( $user->ID, 25, '', $user->display_name );
+							endif; ?>
 							
-							<td>
-								<strong><a href="<?php the_permalink(); ?>"><?php the_title_attribute(); ?></a></strong><br>
-								<small><?php echo apply_atomic_shortcode( 'byline', '<div class="byline muted">' . __( 'by [entry-author] on [entry-published]', hybrid_get_parent_textdomain() ) . '</div>' ); ?></small>
-							</td>							
-							
-							<td><?php echo get_the_term_list( $post->ID, 'pm_priority', '<span class="task-priority">', ', ', '</span>' ); ?></td>
-							
-							<td><?php echo get_the_term_list( $post->ID, 'pm_label', '<span class="task-label">', ', ', '</span>' ); ?></td>
+							<?php echo apply_atomic_shortcode( 'entry_title', '[entry-title]' ); ?>
+							<?php echo apply_atomic_shortcode( 'byline', '<span class="byline">' . __( 'by [entry-author] on [entry-published]', hybrid_get_parent_textdomain() ) . '</span>' ); ?><br>
+							<?php echo get_the_term_list( get_the_ID(), 'pm_priority', ' <span class="label-priority">', ', ', '</span>' ); ?>
+							<?php echo get_the_term_list( get_the_ID(), 'pm_status', '<span class="label-status">', ', ', '</span>' ); ?>
 
-						</tr>
+						</div>
 		
 					<?php endwhile; ?>
-					
-					</tbody>
-					
-				</table>
+										
+				</div><!-- #tasks-list -->
 			
 			</div>
 	

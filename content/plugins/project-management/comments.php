@@ -13,33 +13,27 @@ function pm_comment_before_fields() {
 		<label class="control-label" for="cat">Status</label>
 		<div class="controls">
 		<?php
-			// Get the statuses
-			$statuses = get_the_terms( $post->ID, 'pm_status' );
-				
-			if ( $statuses && ! is_wp_error( $statuses ) ) :
-				$current_status = array();
-				foreach ( $statuses as $status ) {
-					$current_status[] = $status->term_id;
-				}
-				$current_status = join( ", ", $current_status );
-			endif;
-		
-			$statuses = get_terms( 'pm_status', array( 'hide_empty' => 0, 'orderby' => 'slug' ) );
+			$statuses = get_the_terms( $post->ID, 'pm_status' );			
 			if ( $statuses && ! is_wp_error( $statuses ) ) :
 				
-				foreach ( $statuses as $status ) {
-				if ( $current_status == $status->term_id ) {
-					$selected = ' checked="checked"';
+				$selected_statuses = array();
+			
+				foreach ( $statuses as $category ) {
+					$selected_statuses[] = $category->term_id;
 				}
-				?>
-			      <label class="radio inline <?php echo $status->slug ?>">
-			        <input type="radio" id="pm_status_<?php echo $status->term_id ?>" name="pm_status" value="<?php echo $status->term_id ?>"<?php echo $selected; ?>> <?php echo $status->name ?> <i class="icon-arrow-right"></i>
-			      </label>
-			    <?php
-			    $selected = '';
-				}
-						
+
+				$selected_statuses = join( ", ", $selected_statuses );
+			
 			endif;
+			$status_args = array(
+				'taxonomy'		=>'pm_status',
+				'hide_empty'	=> 0,
+				'orderby'		=> 'name',
+				'name'			=> 'pm_status[]',
+				'id'			=> 'pm_status',
+				'selected'		=> $selected_statuses
+			);
+			wp_dropdown_categories( $status_args );
 		?>
 		</div>
 	</div>
@@ -52,7 +46,6 @@ function pm_comment_before_fields() {
 			if ( $categories && ! is_wp_error( $categories ) ) :
 				
 				$selected_categories = array();
-				$exclude_categories = array();
 			
 				foreach ( $categories as $category ) {
 					$selected_categories[] = $category->term_id;
@@ -67,17 +60,15 @@ function pm_comment_before_fields() {
 				'orderby'		=> 'name',
 				'name'			=> 'category[]',
 				'id'			=> 'cat',
-				'class'			=> 'span12',
 				'selected'		=> $selected_categories
 			);
-
 			wp_dropdown_categories( $cat_args );
-			?>
+		?>
 		</div>
 	</div>
 	
 	<div class="control-group">
-		<label class="control-label" for="pm_people">Assigned to</label>
+		<label class="control-label" for="pm_task_assign_to">Assigned to</label>
 		<div class="controls">
 		<?php
 
@@ -88,7 +79,7 @@ function pm_comment_before_fields() {
 			$users = get_users();
 			if ( $users && ! is_wp_error( $users ) ) :
 				
-				echo '<select name="pm_task_assign_to" class="span12">';
+				echo '<select name="pm_task_assign_to">';
 
 				foreach ( $users as $user ) {
 					if( $assigned == $user->ID )

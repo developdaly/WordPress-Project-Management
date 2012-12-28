@@ -79,7 +79,7 @@ function marketing_theme_setup() {
 function marekting_load_files() {
 	$theme  = wp_get_theme();
 	
-	wp_enqueue_style( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'css/less/bootstrap.less', '', $theme->version );
+	//wp_enqueue_style( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'css/less/bootstrap.less', '', $theme->version );
 	//$swatch = hybrid_get_setting( 'pm_theme_swatch' );
 	//if ( $swatch ) {
 	//	wp_enqueue_style( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'swatches/'. $swatch, '', $theme->version );
@@ -88,6 +88,8 @@ function marekting_load_files() {
 	//}
 		
 	wp_enqueue_style( 'bitter', 'http://fonts.googleapis.com/css?family=Bitter', array(), $theme->version );
+	
+	wp_enqueue_style( 'app', trailingslashit ( get_template_directory_uri() ) .'css/app.less', array(), $theme->version );
 	wp_enqueue_style( 'style', trailingslashit ( get_template_directory_uri() ) .'style.css', array(), $theme->version );
 	
     wp_enqueue_script( 'jquery' );
@@ -360,11 +362,27 @@ function get_current_template( $echo = false ) {
 // add category nicenames in body and post class
 function category_id_class($classes) {
     global $post;
-	foreach( ( get_the_category( $post->ID ) ) as $category )
-        $classes[] = $category->category_nicename;
-	foreach( ( get_the_terms( $post->ID, 'pm_status' ) ) as $term )
-		$classes[] = $term->slug;
-        return $classes;
+	$categories = get_the_category( $post->ID );
+	$priorities = get_the_terms( $post->ID, 'pm_priority' );
+	$statuses = get_the_terms( $post->ID, 'pm_status' );
+
+	if( $categories ) {
+		foreach( $categories as $category )
+	        $classes[] = $category->category_nicename;
+	}
+	
+	if( $priorities ) {
+		foreach( $priorities as $priority )
+			$classes[] = $priority->slug;
+	}
+
+	if( $statuses ) {	
+		foreach( $statuses as $status )
+			$classes[] = $status->slug;
+	}
+     
+     return $classes;
 }
 add_filter('post_class', 'category_id_class');
 add_filter('body_class', 'category_id_class');
+
