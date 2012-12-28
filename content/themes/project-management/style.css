@@ -9,6 +9,8 @@
  */
 
 body {
+	background: url('images/gray_jean_@2x.jpg');
+	background-size: 150px 150px;
 	font-family: "Bitter", Arial, Helvetica, sans-serif;
 }
 body.admin-bar {
@@ -22,7 +24,8 @@ body.admin-bar {
 }
 
 .navbar .brand {
-	padding: 10px;
+	margin: 0 10px 0 20px;
+	padding: 5px 0;
 }
 
 #site-title {
@@ -78,31 +81,96 @@ body.admin-bar {
 .pm_task.new .label {
 	background: #468847;
 }
-.pm_task.in-progress .label {
+.pm_task.in-progress .task-header {
 	background: #3A87AD;
 }
-.pm_task.needs-review .label {
+.pm_task.needs-review .task-header {
 	background: #F89406;
 }
-.pm_task.needs-revision .label {
+.pm_task.needs-revision .task-header {
 	background: #B94A48;
 }
-.pm_task.complete .label {
+.pm_task.complete .task-header {
 	background: #333;
 }
-.pm_task.accepted .label {
+.pm_task.accepted .task-header {
 	background: #eee;
 }
 
+.label-priority {
+	background: #fff;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 10px;
+	text-transform: uppercase;
+	padding: 3px;
+}
+.label-priority a {
+	color: #fff;
+}
+
+.pm_task.a-low .label-priority {
+	background: none;
+	padding: 0;
+}
+.pm_task.b-normal .label-priority {
+	background: rgba(255,0,27, .15);
+}
+.pm_task.c-high .label-priority {
+	background: rgba(255,0,27, .5);
+}
+.pm_task.d-critical .label-priority {
+	background: rgba(255,0,27, 1);
+}
+
 .task-header {
-	border-bottom: 1px dashed #eee;
-	margin: 0 0 20px;
-	padding: 0 0 20px;
+	background: #fff;
+	border-bottom: 4px solid #ddd;
+	color: #f5f5f5;
+	padding: 20px 40px;
+}
+.task-header .muted {
+	color: #ccc;
+}
+.task-header .muted a {
+	color: #ccc;
+	text-decoration: underline;
+}
+.singular .pm_task {
+	background: url( 'images/linedpaper.png');
+}
+#task-main .entry-content {
+	border-bottom: 4px solid #ddd;
+	padding: 30px 40px 10px;
+}
+
+.widget {
+	background: #4A596D;
+	border-bottom: 4px solid #ddd;
+	color: #F5F5F5;
+	padding: 20px 20px 10px;
 }
 
 /*
  * Comments
 *******************************************************/
+#comments-template {
+	background: #fff;
+	border-bottom: 4px solid #ddd;
+	padding: 20px 40px;
+}
+#comments-template h3 {
+	color: #999;
+	font-size: 16px;
+}
+#comments-template .log-in-out {
+	color: #999;
+	font-size: 12px;
+}
+.comment-list {
+	margin: 0;
+	padding: 0;
+}
 .pm_task .comment {
 	clear: both;
 	list-style: none;
