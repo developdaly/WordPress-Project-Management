@@ -14,54 +14,60 @@ function pm_new_task_form( $allowNotLoggedInuser = 'yes' ) {
 			$output .= '<div id="pm-response"></div>';
 		
 			// Title
-			$output .= '<div class="control-group"><label class="control-label" for="pmtitle">Title</label>';
-			$output .= '<div class="controls"><input class="input-xxlarge" type="text" id="pmtitle" name="pmtitle" placeholder="Task title..."></div></div>';
+			$output .= '<p><input class="input-xxlarge" type="text" id="pmtitle" name="pmtitle" placeholder="Task title..."></p>';
 			
 			// Contents
-			$output .= '<div class="control-group"><label class="control-label" for="pmcontents">Contents</label>';
-			$output .= '<div class="controls"><textarea class="input-xxlarge" id="pmcontents" name="pmcontents" rows="10" cols="20" placeholder="Describe your task..."></textarea></div></div>';
+			$output .= '<p><textarea class="input-xxlarge" id="pmcontents" name="pmcontents" rows="10" cols="20" placeholder="Describe your task..."></textarea></p>';
 
 			// Assign to
-			$output .= '<div class="control-group"><label class="control-label" for="pmassignto">Assign To</label>';
-			$output .= '<div class="controls"><select multiple="multiple">';
+			$output .= '<p><select class="chzn-select" data-placeholder="Assign someone to the task"></p>';
 			$users = get_users();
+				$output .= '<option></option>';			
 			foreach( $users as $user) { 
 				$output .= '<option name="pmassignto" id="pmassignto" value="'. $user->ID .'">'. $user->display_name .'</option>';
 			}
-			$output .= '</select></div></div>';
+			$output .= '</select></p>';
 			
 			// Categories
-			$output .= '<div class="control-group"><label class="control-label" for="pmcategorycheck">Category</label>';
-			$output .= '<div class="controls"><select multiple="multiple">';
+			$output .= '<p><select name="pmcategorycheck" class="chzn-select" data-placeholder="Organize into a single category">';
 			$categories = get_categories(array('hide_empty'=> 0));
+				$output .= '<option></option>';
 			foreach($categories as $category) { 
 				$output .= '<option name="pmcategorycheck" id="pmcategorycheck" value="'. $category->term_id .'">'. $category->cat_name .'</option>';
 			}
-			$output .= '</select></div></div>';
+			$output .= '</select></p>';
 
 			// Statuses
-			$output .= '<div class="control-group"><label class="control-label" for="pmstatuscheck">Statuses</label>';
-			$output .= '<div class="controls"><select multiple="multiple">';
+			$output .= '<p><select name="pmstatuscheck" class="chzn-select" data-placeholder="How important is this task?">';
 			$statuses = get_categories( array( 'hide_empty' => 0, 'taxonomy' => 'pm_status' ) );
+				$output .= '<option></option>';
 			foreach( $statuses as $status ) { 
 				$output .= '<option name="pmstatuscheck" id="pmstatuscheck" value="'. $status->term_id .'">'. $status->cat_name .'</option>';
 			}
-			$output .= '</select></div></div>';
+			$output .= '</select></p>';
 
 			// Priorities
-			$output .= '<div class="control-group"><label class="control-label" for="pmprioritycheck">Priorities</label>';
-			$output .= '<div class="controls"><select multiple="multiple">';
+			$output .= '<p><select name="pmprioritycheck" class="chzn-select" data-placeholder="Assign a priority">';
 			$statuses = get_categories( array( 'hide_empty' => 0, 'taxonomy' => 'pm_priority' ) );
+				$output .= '<option></option>';
 			foreach( $statuses as $status ) { 
 				$output .= '<option name="pmprioritycheck" id="pmprioritycheck" value="'. $status->term_id .'">'. $status->cat_name .'</option>';
 			}
-			$output .= '</select></div></div>';
-			
+			$output .= '</select></p>';
+
+			// Tags
+			$output .= '<p><select name="pmtagcheck" multiple="multiple" class="chzn-select" data-placeholder="Organize with some tags">';
+			$tags = get_tags( array( 'hide_empty'=> 0 ) );
+				$output .= '<option></option>';
+			foreach($tags as $tag) { 
+				$output .= '<option name="pmtagcheck" id="pmtagcheck" value="'. $tag->name .'">'. $tag->name .'</option>';
+			}
+			$output .= '</select></p>';
+						
 			// Submit
-			$output .= '<div class="form-actions">';			
-			$output .= '<button type="button" data-loading-text="Loading..." class="btn btn-primary" onclick="pmaddpost(pmtitle.value,pmcontents.value,pmcategorycheck,pmstatuscheck,pmprioritycheck,pmassignto);">Create Task</button>';
-			$output .= '</div>';
-			
+			$output .= '<p><button type="button" data-loading-text="Loading..." class="btn btn-primary" onclick="pmaddpost(pmtitle.value,pmcontents.value,pmcategorycheck,pmstatuscheck,pmprioritycheck,pmassignto);">Create Task</button></p>';
+			$output .= '<div id="loading" class="hide">loading</div>';
+						
 		$output .= '</div>';
 		
 	$output .= '</form>';
@@ -82,6 +88,7 @@ function pm_addpost() {
 	$title		= $_POST['pmtitle'];
 	$content	= $_POST['pmcontents'];
 	$category	= $_POST['pmcategory'];
+	$tags		= $_POST['pmtags'];
 	$statuses	= $_POST['pmstatus'];
 	$priorities	= $_POST['pmpriority'];
 	$assignto	= $_POST['pmassignto'];
@@ -92,6 +99,7 @@ function pm_addpost() {
 		'post_content'		=> $content,
 		'post_status'		=> 'publish',
 		'post_category'		=> $category,
+		'tags_input'		=> $tags,
 		'post_author'       => '1',
 		'post_type'			=> 'pm_task'
 	) );

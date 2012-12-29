@@ -31,6 +31,7 @@ function pm_comment_before_fields() {
 				'orderby'		=> 'name',
 				'name'			=> 'pm_status[]',
 				'id'			=> 'pm_status',
+				'class'			=> 'chzn-select',
 				'selected'		=> $selected_statuses
 			);
 			wp_dropdown_categories( $status_args );
@@ -60,6 +61,7 @@ function pm_comment_before_fields() {
 				'orderby'		=> 'name',
 				'name'			=> 'category[]',
 				'id'			=> 'cat',
+				'class'			=> 'chzn-select',
 				'selected'		=> $selected_categories
 			);
 			wp_dropdown_categories( $cat_args );
@@ -79,7 +81,7 @@ function pm_comment_before_fields() {
 			$users = get_users();
 			if ( $users && ! is_wp_error( $users ) ) :
 				
-				echo '<select name="pm_task_assign_to">';
+				echo '<select name="pm_task_assign_to" class="chzn-select">';
 
 				foreach ( $users as $user ) {
 					if( $assigned == $user->ID )

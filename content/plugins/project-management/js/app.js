@@ -1,7 +1,20 @@
-function pmaddpost(posttitle, postcontent, postcategory, poststatus, postpriority, postassignto) {
+jQuery(document).ready(function($) {
+	'use strict';
+	
+    $("#loading").ajaxStart(function () {
+        $(this).show();
+    });
+
+    $("#loading").ajaxStop(function () {
+        $(this).hide();
+    });
+});
+
+function pmaddpost(posttitle, postcontent, postcategory, posttags, poststatus, postpriority, postassignto) {
 	"use strict";
 
 	var postCatergoryArray = new Array();
+	var postTagsArray = new Array();
 	var postStatusArray = new Array();
 	var postPriorityArray = new Array();
 	var postAssignToArray = new Array();
@@ -10,8 +23,14 @@ function pmaddpost(posttitle, postcontent, postcategory, poststatus, postpriorit
         if ( postcategory[i].selected ) {  
             postCatergoryArray[postCatergoryArray.length] = postcategory[i].value;  
         }  
-    }  
+    }
 
+    for ( var i=0; i < posttags.length; i++ ) {  
+        if ( posttags[i].selected ) {  
+            postTagsArray[postTagsArray.length] = posttags[i].value;  
+        }  
+    }
+    
 	 for ( var i=0; i < poststatus.length; i++ ) {  
 		if ( poststatus[i].selected ) {
 			postStatusArray[postStatusArray.length] = poststatus[i].value;
@@ -29,7 +48,7 @@ function pmaddpost(posttitle, postcontent, postcategory, poststatus, postpriorit
 			postAssignToArray[postAssignToArray.length] = postassignto[i].value;
 		}
 	}
-		
+    		
 	jQuery.ajax({
 
 		type : 'POST',
@@ -39,6 +58,7 @@ function pmaddpost(posttitle, postcontent, postcategory, poststatus, postpriorit
 			pmtitle		: posttitle,
 			pmcontents	: postcontent,
 			pmcategory	: postCatergoryArray,
+			pmtags		: postTagsArray,
 			pmstatus	: postStatusArray,
 			pmpriority	: postPriorityArray,
 			pmassignto	: postAssignToArray
@@ -68,5 +88,5 @@ function resetvalues() {
 	jQuery('#pmstatuscheck').prop('selectedIndex',0);
 	jQuery('#pmpritoritycheck').prop('selectedIndex',0);
 	jQuery('#pmassigntocheck').prop('selectedIndex',0);
-	
+	jQuery('#pmtagscheck').prop('selectedIndex',0);	
 }

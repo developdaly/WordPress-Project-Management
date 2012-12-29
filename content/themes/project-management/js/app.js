@@ -46,5 +46,11 @@ jQuery(document).ready(function($) {
 	
 	// Tooltips
 	$('[rel=tooltip]').tooltip();
-	
+
+	// "Chosen" dropdowns
+	$(".chzn-select").chosen();
+	$(".chzn-select-deselect").chosen({
+		allow_single_deselect : true
+	}); 
+
 });
