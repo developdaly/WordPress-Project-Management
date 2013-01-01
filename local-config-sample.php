@@ -7,10 +7,10 @@
  * 2) Change the WP_HOME and WP_SITEURL constants to match your local domain
 */
 
-define( 'DB_NAME',			'devdal1_pm_prod' );
-define( 'DB_USER',			'devdal1_readonly' );
-define( 'DB_PASSWORD',		'N1kdlJMu),W@' );
-define( 'DB_HOST',			'184.173.232.56' );
+define( 'DB_NAME',			'local_db_name' );
+define( 'DB_USER',			'local_db_user' );
+define( 'DB_PASSWORD',		'local_db_pass' );
+define( 'DB_HOST',			'localhost' );
 
 define( 'WP_HOME',			'http://pm.local' );
 define( 'WP_SITEURL',		'http://pm.local/wp' );
