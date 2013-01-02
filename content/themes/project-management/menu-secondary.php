@@ -22,7 +22,7 @@ if ( has_nav_menu( 'secondary' ) ) : ?>
 				'theme_location' => 'secondary',
 				'depth'	=> 0,
 				'container'	=> false,
-				'menu_class'	=> 'nav pull-right',
+				'menu_class'	=> 'nav',
 				'walker'	=> new Bootstrap_Walker_Nav_Menu() ) );
 			?>			
 			
