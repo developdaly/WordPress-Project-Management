@@ -18,4 +18,4 @@ Once the theme and the plugin are stable they will probably be separated into th
 
 ## Get involved and learn more
 
-See [WordPress Project Management](http://production.pm.developdaly.com/) in action. We would love collaborators, so ping [Patrick Daly](https://github.com/developdaly) to get collaborator access to this repository.
+See [WordPress Project Management](http://nervetask.com/) in action. We would love collaborators, so ping [Patrick Daly](https://github.com/developdaly) to get collaborator access to this repository.
