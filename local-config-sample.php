@@ -12,8 +12,8 @@ define( 'DB_USER',			'local_db_user' );
 define( 'DB_PASSWORD',		'local_db_pass' );
 define( 'DB_HOST',			'localhost' );
 
-define( 'WP_HOME',			'http://pm.local' );
-define( 'WP_SITEURL',		'http://pm.local/wp' );
+define( 'WP_HOME',			'http://nervetask.local' );
+define( 'WP_SITEURL',		'http://nervetask.local/wp' );
 
 // Enable WP_DEBUG mode
 define( 'WP_DEBUG',			true );
