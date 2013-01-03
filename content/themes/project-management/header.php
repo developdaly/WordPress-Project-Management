@@ -43,7 +43,7 @@
 	
 	<?php do_atomic( 'open_body' ); // marketing_open_body ?>
 
-	<div class="navbar navbar-fixed-top">
+	<div class="navbar navbar-fixed-top navbar-inverse">
 		
 		<div class="navbar-inner">
 
@@ -52,11 +52,28 @@
 				<?php get_template_part( 'menu', 'primary' ); // Loads the menu-primary.php template. ?>
 		
 				<form method="get" class="navbar-form pull-left" action="<?php echo trailingslashit( home_url() ); ?>">
-					<input class="search-query" type="text" name="s" placeholder="Search this site..." />
+					<input class="search-query" type="text" name="s" placeholder="Search..." />
 				</form><!-- .navbar-form -->
 	
 				<?php get_template_part( 'menu', 'secondary' ); // Loads the menu-secondary.php template. ?>
-					
+			
+				<?php
+				if( is_user_logged_in() ):
+				$current_user = wp_get_current_user();
+				?>
+				<div class="btn-group pull-right">
+					<button class="btn btn-mini btn-inverse">
+						<?php echo get_avatar( $current_user->ID, 18 ); ?> <?php echo $current_user->display_name; ?>
+					</button>
+					<button class="btn btn-mini btn-inverse dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><?php wp_loginout(); ?></li>
+					</ul>
+				</div>
+				<?php endif; ?>
+										
 			</div><!-- .container -->
 		
 		</div><!-- .navbar-inner -->

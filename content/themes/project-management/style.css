@@ -14,55 +14,78 @@ body {
 	font-family: "Bitter", Arial, Helvetica, sans-serif;
 	padding-top: 60px;
 }
+
+/* Navbar */
 .admin-bar .navbar-fixed-top {
 	top: 28px;
 }
-.row-fluid .navbar-inner {
-	padding: 0 20px;
-}
-
-.navbar .brand {
-	margin: 0 10px 0 20px;
-	padding: 5px 0;
-}
-
-#site-title {
-	margin: 0;
-}
-#site-title a {
-	background: url('images/logo.png') no-repeat;
-	display: block;
-	height: 24px;
-	text-indent: -9999px;
-	width: 24px;
-}
-
 .navbar-inner {
 	background: #fff;
+	font-size: 12px;
+	min-height: 36px;
+	padding: 0 20px;
+}
+.navbar .nav > li > a {
+	padding: 8px 15px;
+}
+.navbar .nav > li > .dropdown-menu:before {
+	left: 75px;
+}
+.navbar .nav > li > .dropdown-menu:after {
+	left: 76px;
+}
+.navbar .search-query {
+	-webkit-transition-duration: 400ms;
+	-webkit-transition-property: width, background;
+	-webkit-transition-timing-function: ease;
+	-moz-transition-duration: 400ms;
+	-moz-transition-property: width, background;
+	-moz-transition-timing-function: ease;
+	-o-transition-duration: 400ms;
+	-o-transition-property: width, background;
+	-o-transition-timing-function: ease;
+	background: #222;
+	border-color: #333;
+	font-size: 11px;
+	padding: 2px 5px;
+	width: 45px;
+}
+.navbar .search-query:focus {
+	width: 150px;
+}
+.navbar .divider-vertical {
+	height: 36px;
+}
+.navbar .btn-group img {
+	border-radius: 2px;
+	margin: 0 7px 0 0;
+}
+.navbar .btn-group .btn {
+	border-color: #333;
+}
+.navbar .btn-group button {
+	color: #ccc;
 }
 
 .dropdown-menu {
 	left: -50%;
 }
-
-.navbar .nav > li > .dropdown-menu:before {
-  left: 75px;
-}
-.navbar .nav > li > .dropdown-menu:after {
-  left: 76px;
-}
-
-.menu-item-account > a {
-	display: inline-block;
-	width: 14px;
-	height: 14px;
-	margin-top: 1px;
+#site-title {
+	font-size: 12px;
 	line-height: 14px;
-	vertical-align: text-top;
-	background-image: url("images/glyphicons-halflings.png");
-	background-position: -432px 0;
-	background-repeat: no-repeat;
-	padding: 0 !important;
-	margin: 10px 15px 10px;
-	text-indent: -9999px;
+	margin: 0;
+}
+#site-title a {
+	color: #fff;
+}
+
+/* Home */
+body.home .hero-unit {
+	margin: 0 auto;
+	width: 700px;
+}
+body.home .hero-unit h1 {
+	font-size: 45px;
+	line-height: 50px;
+	margin: 0 0 10px;
 }
