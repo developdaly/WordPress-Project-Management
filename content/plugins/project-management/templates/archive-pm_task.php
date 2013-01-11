@@ -11,7 +11,8 @@
  * @since Twenty Eleven 1.0
  */
 
-get_header(); // Loads the header.php template. ?>
+get_header();
+ // Loads the header.php template. ?>
 
 	<?php do_atomic( 'before_content' ); // marketing_before_content ?>
 		
@@ -69,7 +70,24 @@ get_header(); // Loads the header.php template. ?>
 		<div class="hfeed">
 
 			<?php get_template_part( 'loop-meta' ); // Loads the loop-meta.php template. ?>
-		
+
+<?php
+global $wp_query;
+
+query_posts(array_merge(
+    $wp_query->query, 
+	array(
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'pm_status',
+				'field' => 'slug',
+				'terms' => 'accpeted',
+				'operator' => 'NOT IN'
+			)
+		)
+	)
+));
+?>		
 			<?php if ( have_posts() ) : ?>
 		
 			<div class="entry-content">

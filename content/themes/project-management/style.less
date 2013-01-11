@@ -1,0 +1,150 @@
+/*!
+ * Project Management
+ */
+
+@import "css/less/bootstrap.less";
+@import "css/less/responsive-1200px-min.less";
+@import "css/variables.less";
+@import "css/tasks.less";
+
+a[rel="tag"] {
+  display: inline-block;
+  .ie7-inline-block();
+  padding: @paddingMini;
+  margin-bottom: 0; // For input.btn
+  font-size: @fontSizeMini;
+  line-height: @baseLineHeight;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  .buttonBackground(@btnBackground, @btnBackgroundHighlight, @grayDark, 0 1px 1px rgba(255,255,255,.75));
+  border: 1px solid @btnBorder;
+  *border: 0; // Remove the border to prevent IE7's black border on input:focus
+  border-bottom-color: darken(@btnBorder, 10%);
+  .border-radius(@borderRadiusSmall);
+  .ie7-restore-left-whitespace(); // Give IE7 some love
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
+
+  // Hover state
+  &:hover {
+    color: @grayDark;
+    text-decoration: none;
+    background-position: 0 -15px;
+
+    // transition is only when going to hover, otherwise the background
+    // behind the gradient (there for IE<=9 fallback) gets mismatched
+    .transition(background-position .1s linear);
+  }
+
+  // Focus state for keyboard and accessibility
+  &:focus {
+    .tab-focus();
+  }
+
+  // Active state
+  &.active,
+  &:active {
+    background-image: none;
+    outline: 0;
+    .box-shadow(~"inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05)");
+  }
+
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+    cursor: default;
+    background-image: none;
+    .opacity(65);
+    .box-shadow(none);
+  }
+
+}
+
+body {
+  background: url('images/gray_jean_@2X.jpg');
+  background-size: 150px 150px;
+  font-family: "Bitter", Arial, Helvetica, sans-serif;
+  padding-top: 60px;
+}
+
+/* Navbar */
+.admin-bar .navbar-fixed-top {
+  top: 28px;
+}
+.navbar-inner {
+  background: #fff;
+  font-size: 12px;
+  min-height: 36px;
+  padding: 0 20px;
+}
+.navbar .nav > li > a {
+  padding: 8px 15px;
+}
+.navbar .nav > li > .dropdown-menu:before {
+  left: 75px;
+}
+.navbar .nav > li > .dropdown-menu:after {
+  left: 76px;
+}
+.navbar .search-query {
+  -webkit-transition-duration: 400ms;
+  -webkit-transition-property: width, background;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-duration: 400ms;
+  -moz-transition-property: width, background;
+  -moz-transition-timing-function: ease;
+  -o-transition-duration: 400ms;
+  -o-transition-property: width, background;
+  -o-transition-timing-function: ease;
+  background: #222;
+  border-color: #333;
+  font-size: 11px;
+  padding: 2px 5px;
+  width: 45px;
+}
+.navbar .search-query:focus {
+  width: 150px;
+}
+.navbar .divider-vertical {
+  height: 36px;
+}
+.navbar .btn-group img {
+  border-radius: 2px;
+  margin: 0 7px 0 0;
+}
+.navbar .btn-group .btn {
+  border-color: #333;
+}
+.navbar .btn-group button {
+  color: #ccc;
+}
+
+.dropdown-menu {
+  left: -50%;
+}
+#site-title {
+  font-size: 12px;
+  line-height: 14px;
+  margin: 0;
+}
+#site-title a {
+  color: #fff;
+}
+
+/* Home */
+body.home .hero-unit {
+  margin: 0 auto;
+  width: 700px;
+}
+body.home .hero-unit h1 {
+  font-size: 45px;
+  line-height: 50px;
+  margin: 0 0 10px;
+}
+
+/*
+ * Sidebar
+*******************************************************/
+.sidebar .nav {
+  background: #fff;
+}

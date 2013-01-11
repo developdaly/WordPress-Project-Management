@@ -80,10 +80,8 @@ function marekting_load_files() {
 	$theme  = wp_get_theme();
 
 	wp_enqueue_style( 'bitter', 'http://fonts.googleapis.com/css?family=Bitter', array(), $theme->version );
-
+	wp_enqueue_style( 'style', trailingslashit ( get_template_directory_uri() ) .'style.less', array(), $theme->version );
 	wp_enqueue_style( 'chosen', trailingslashit ( get_template_directory_uri() ) .'css/chosen.css', array(), $theme->version );	
-	wp_enqueue_style( 'app', trailingslashit ( get_template_directory_uri() ) .'css/app.less', array(), $theme->version );
-	wp_enqueue_style( 'style', trailingslashit ( get_template_directory_uri() ) .'style.css', array(), $theme->version );
 	
     wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'bootstrap', trailingslashit ( get_template_directory_uri() ) .'js/bootstrap.min.js', array(), $theme->version, false );

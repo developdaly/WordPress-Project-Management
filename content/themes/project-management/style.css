@@ -1,91 +1,9 @@
 /**
  * Theme Name: Project Management
  * Description: A theme built to enhance the Project Management plugin.
- * Version: 1.0
+ * Version: 1.0-alpha
  * Author: Patrick Daly
  *
- * (c) 2012 Develop Daly. All Rights Reserved.
+ * (c) 2013 Develop Daly. All Rights Reserved.
  * http://developdaly.com
  */
-
-body {
-	background: url('images/gray_jean_@2X.jpg');
-	background-size: 150px 150px;
-	font-family: "Bitter", Arial, Helvetica, sans-serif;
-	padding-top: 60px;
-}
-
-/* Navbar */
-.admin-bar .navbar-fixed-top {
-	top: 28px;
-}
-.navbar-inner {
-	background: #fff;
-	font-size: 12px;
-	min-height: 36px;
-	padding: 0 20px;
-}
-.navbar .nav > li > a {
-	padding: 8px 15px;
-}
-.navbar .nav > li > .dropdown-menu:before {
-	left: 75px;
-}
-.navbar .nav > li > .dropdown-menu:after {
-	left: 76px;
-}
-.navbar .search-query {
-	-webkit-transition-duration: 400ms;
-	-webkit-transition-property: width, background;
-	-webkit-transition-timing-function: ease;
-	-moz-transition-duration: 400ms;
-	-moz-transition-property: width, background;
-	-moz-transition-timing-function: ease;
-	-o-transition-duration: 400ms;
-	-o-transition-property: width, background;
-	-o-transition-timing-function: ease;
-	background: #222;
-	border-color: #333;
-	font-size: 11px;
-	padding: 2px 5px;
-	width: 45px;
-}
-.navbar .search-query:focus {
-	width: 150px;
-}
-.navbar .divider-vertical {
-	height: 36px;
-}
-.navbar .btn-group img {
-	border-radius: 2px;
-	margin: 0 7px 0 0;
-}
-.navbar .btn-group .btn {
-	border-color: #333;
-}
-.navbar .btn-group button {
-	color: #ccc;
-}
-
-.dropdown-menu {
-	left: -50%;
-}
-#site-title {
-	font-size: 12px;
-	line-height: 14px;
-	margin: 0;
-}
-#site-title a {
-	color: #fff;
-}
-
-/* Home */
-body.home .hero-unit {
-	margin: 0 auto;
-	width: 700px;
-}
-body.home .hero-unit h1 {
-	font-size: 45px;
-	line-height: 50px;
-	margin: 0 0 10px;
-}
