@@ -354,6 +354,7 @@ function get_current_template( $echo = false ) {
 // add category nicenames in body and post class
 function category_id_class($classes) {
     global $post;
+	
 	$categories = get_the_category( $post->ID );
 	$priorities = get_the_terms( $post->ID, 'pm_priority' );
 	$statuses = get_the_terms( $post->ID, 'pm_status' );
@@ -376,7 +377,7 @@ function category_id_class($classes) {
      return $classes;
 }
 add_filter('post_class', 'category_id_class');
-add_filter('body_class', 'category_id_class');
+//add_filter('body_class', 'category_id_class');
 
 /**
  * Examines the given ID and returns the appropirate Twitter Bootstrap span

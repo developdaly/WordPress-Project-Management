@@ -76,6 +76,37 @@ function pmaddpost(posttitle, postcontent, postcategory, posttags, poststatus, p
 	});
 }
 
+function pmassignuser(postassignto) {
+	"use strict";
+
+	var postAssignToArray = new Array();
+	
+	 for ( var i=0; i < pmassignto.length; i++ ) {  
+		if ( postassignto[i].selected ) {
+			postAssignToArray[postAssignToArray.length] = postassignto[i].value;
+		}
+	}
+    		
+	jQuery.ajax({
+
+		type : 'POST',
+		url : pmajax.ajaxurl,
+		data : {
+			action		: 'pm_addpost',
+			pmassignto	: postAssignToArray
+		},
+		success : function(data, textStatus, XMLHttpRequest) {
+			var id = '#pm-response';
+			jQuery(id).html('');
+			jQuery(id).append(data);
+		},
+		error : function(MLHttpRequest, textStatus, errorThrown) {
+			alert(errorThrown);
+		}
+	});
+}
+
+
 function resetvalues() {
 	"use strict";
 

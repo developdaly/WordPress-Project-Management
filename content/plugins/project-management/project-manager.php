@@ -28,6 +28,7 @@ require_once( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/register.php
 require_once( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/comments.php' );
 require_once( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/template-tags.php' );
 require_once( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/new-task.php' );
+require_once( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/tasks2users.php' );
 require_once( WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/admin/options.php' );
 
 // Register post types.
@@ -47,9 +48,6 @@ add_action( 'comment_form_after_fields', 'pm_comment_before_fields' );
 
 // Insert a comment.
 add_action( 'comment_post', 'pm_insert_comment', 10, 1 );
-
-// Load custom templates.
-add_action( 'template_redirect', 'pm_templates' );
 
 // Add WYSISYG editor to comment form.
 add_filter( 'comment_form_field_comment', 'pm_comment_editor' );

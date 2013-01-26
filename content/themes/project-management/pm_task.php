@@ -124,6 +124,26 @@ get_header(); // Loads the header.php template. ?>
 	</section><!-- #content -->
 		
 	<aside id="sidebar-task" class="sidebar span6">
+		
+		<form id="assign-user" class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+
+			<div id="pm-response"></div>
+		
+			<p><select class="chzn-select" data-placeholder="Assign someone to the task"></p>';
+			<?php
+			$users = get_users();
+				echo '<option></option>';			
+			foreach( $users as $user) { 
+				echo '<option name="pmassignto" id="pmassignto" value="'. $user->ID .'">'. $user->display_name .'</option>';
+			}
+			?>
+			</select></p>
+			
+			<p><button type="button" data-loading-text="Loading..." class="btn btn-primary" onclick="pmassignuser(pmassignto);">Assign Task</button></p>
+			<div id="loading" class="hide">loading</div>
+					
+		</form>
+		
 		<?php comments_template( '/comments-pm_task.php', true ); // Loads the comments.php template. ?>
 	</div>
 	

@@ -71,23 +71,6 @@ get_header();
 
 			<?php get_template_part( 'loop-meta' ); // Loads the loop-meta.php template. ?>
 
-<?php
-global $wp_query;
-
-query_posts(array_merge(
-    $wp_query->query, 
-	array(
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'pm_status',
-				'field' => 'slug',
-				'terms' => 'accpeted',
-				'operator' => 'NOT IN'
-			)
-		)
-	)
-));
-?>		
 			<?php if ( have_posts() ) : ?>
 		
 			<div class="entry-content">

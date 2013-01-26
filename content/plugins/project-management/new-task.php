@@ -109,7 +109,9 @@ function pm_addpost() {
 	wp_set_post_terms( $post_id, $priorities, 'pm_priority' );
 	
 	// Attach meta data
-	update_post_meta( $post_id, 'pm_task_assign_to', $assignto );
+	p2p_type( 'assigned_tasks' )->connect( $post_id, $assignto, array(
+		'date' => current_time('mysql')
+	) );
 	
 	// Mail the assigned users
 	$users = get_users( array( 'include' => $assignto ) );
