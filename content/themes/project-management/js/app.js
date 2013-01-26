@@ -29,7 +29,7 @@ jQuery(document).ready(function($) {
 		$("#ajax-loader").fadeIn();
 		$('#status').fadeTo(200,0);
 		$('#content').fadeTo(200,.3);
-		$("#main .row-fluid").load(State.url + ' #task-organization, #content', function(data) {
+		$("#main .row").load(State.url + ' #task-organization, #content', function(data) {
 			console.log(event);
 
 			/* After the content loads you can make additional callbacks*/
@@ -39,7 +39,7 @@ jQuery(document).ready(function($) {
 			
 			// Updates the menu
 			var request = $(data);
-			$('#task-organization').replaceWith($('#task-organization', request));
+			$('#task-organization').replaceWith($('#sidebar-primary', request));
 			
 		});
 	}
